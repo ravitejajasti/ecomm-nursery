@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container space-2 space-top-md-5 space-bottom-md-3 space-top-lg-4">
+        <div calss="row justify-content-lg-between align-items-lg-center">
+<div class="d-lg-flex position-relative">
+    <div id="shopItemsContent" class="container space-2 space-md-3">    
+    <div class='row'>
+    {% for obj in object_list %}
+    <div class="col-sm-6 col-lg-4 mb-5">
+            {% include 'products/snippets/card.html' with instance=obj %}  
+        </div>
+    {% endfor %}
+</div>
+</div>
+</div>
+</div>
+</div>
+{% endblock %}
