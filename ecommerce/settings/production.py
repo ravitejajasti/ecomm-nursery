@@ -43,7 +43,7 @@ ADMINS = MANAGERS
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['.pythonecommerce.com']
+ALLOWED_HOSTS = ['vriksh.herokuapp.com', '.vriksh.me']
 
 CORS_ORIGIN_ALLOW_ALL=True
 
