@@ -43,7 +43,7 @@ ADMINS = MANAGERS
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['vriksh.herokuapp.com', '.vriksh.me']
+ALLOWED_HOSTS = ['.herokuapp.com']
 
 CORS_ORIGIN_ALLOW_ALL=True
 
