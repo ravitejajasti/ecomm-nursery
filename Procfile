@@ -1,1 +1,1 @@
-web: gunicorn vriksh.wsgi
+web: gunicorn eCommerce-master.wsgi
