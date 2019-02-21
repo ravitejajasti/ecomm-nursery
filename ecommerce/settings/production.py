@@ -102,6 +102,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.BrokenLinkEmailsMiddleware',
     'django.middleware.common.CommonMiddleware',
 
 ]
@@ -201,6 +202,7 @@ from ecommerce.aws.conf import *
 # https://kirr.co/vklau5
 
 # Let's Encrypt ssl/tls https
+CORS_ORIGIN_ALLOW_ALL = True
 
 CORS_REPLACE_HTTPS_REFERER      = True
 HOST_SCHEME                     = "https://"
