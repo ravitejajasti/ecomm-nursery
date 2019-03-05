@@ -3,6 +3,9 @@
 <html lang="en">
 <head>
   <!-- Title -->
+  {% block title %}
+
+  {% endblock %}
   <title>Vriksh | Home for all plant varieties</title>
 
   <!-- Required Meta Tags Always Come First -->
@@ -10,7 +13,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Favicon -->
-  <link rel="shortcut icon" href="../../favicon.ico">
+  <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}">
 
   <!-- Google Fonts -->
   <link href="//fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
@@ -158,7 +161,7 @@
                data-unfold-hide-on-scroll="true"
                data-unfold-animation-in="slideInUp"
                data-unfold-animation-out="fadeOut">
-               <img class="dropdown-item-icon" src="../../assets/vendor/flag-icon-css/flags/4x3/us.svg" alt="SVG">
+               <img class="dropdown-item-icon" src="{% static 'vendor/flag-icon-css/flags/4x3/us.svg' %}" alt="SVG">
               <span class="d-inline-block d-sm-none">US</span>
               <span class="d-none d-sm-inline-block">United States</span>
             </a>
@@ -226,19 +229,9 @@
 
             <!-- Shopping Cart -->
             <li class="list-inline-item">
-                <a id="sidebarcartToggler" class="btn btn-xs btn-icon btn-text-secondary ml-1" href="javascript:;" role="button"
-                   aria-controls="sidebarcartContent"
-                   aria-haspopup="true"
-                   aria-expanded="false"
-                   data-unfold-event="click"
-                   data-unfold-hide-on-scroll="false"
-                   data-unfold-target="#sidebarcartContent"
-                   data-unfold-type="css-animation"
-                   data-unfold-animation-in="fadeInRight"
-                   data-unfold-animation-out="fadeOutRight"
-                   data-unfold-duration="500">
-                  <span class="fas fa-shopping-cart btn-icon__inner"></span>
-                </a>
+             <a class="btn btn-xs btn-icon btn-text-secondary" href="/cart">
+              <span class="fas fa-shopping-cart btn-icon__inner"></span>
+            </a>
               </li>
               <!-- End Shopping Cart -->
 
@@ -246,8 +239,7 @@
             <li class="list-inline-item">
               <!-- Account Sidebar Toggle Button -->
               {% if user.is_authenticated %}
-              <a class="btn btn-xs btn-text-secondary u-sidebar--account__toggle-bg ml-1" href="/accounts"
-                 >
+              <a class="btn btn-xs btn-text-secondary u-sidebar--account__toggle-bg ml-1" href="/accounts">
                 <span class="position-relative">
                   <span class="u-sidebar--account__toggle-text">{{ user.full_name }}</span>
                   <img class="u-sidebar--account__toggle-img" src="{{user.image.url}}" alt="Image Description">
@@ -255,17 +247,8 @@
                 </span>
               </a>
               {% else %}
-              <a id="sidebarNavToggler" class="btn btn-xs btn-icon btn-text-secondary" href="javascript:;" role="button"
-                 aria-controls="sidebarContent"
-                 aria-haspopup="true"
-                 aria-expanded="false"
-                 data-unfold-event="click"
-                 data-unfold-hide-on-scroll="false"
-                 data-unfold-target="#sidebarContent"
-                 data-unfold-type="css-animation"
-                 data-unfold-animation-in="fadeInRight"
-                 data-unfold-animation-out="fadeOutRight"
-                 data-unfold-duration="500">
+              <a class="btn btn-xs btn-text-secondary u-sidebar--account__toggle-bg ml-1" href="/login">
+
                <span class="fas fa-user-circle btn-icon__inner font-size-1"></span>
               </a>
               {% endif %}
@@ -675,7 +658,7 @@
                       <div class="u-header__promo-item">
                         <a class="u-header__promo-link" href="../house//">
                           <div class="media align-items-center">
-                            <img class="js-svg-injector u-header__promo-icon" src="../../assets/svg/icons/icon-13.svg" alt="SVG">
+                            <img class="js-svg-injector u-header__promo-icon" src="{% static 'svg/icons/icon-13.svg' %}" alt="SVG">
                             <div class="media-body">
                               <span class="u-header__promo-title">House</span>
                               <small class="u-header__promo-text">Real estate demo.</small>
@@ -689,7 +672,7 @@
                       <div class="u-header__promo-item">
                         <a class="u-header__promo-link" href="../job//">
                           <div class="media align-items-center">
-                            <img class="js-svg-injector u-header__promo-icon" src="../../assets/svg/icons/icon-19.svg" alt="SVG">
+                            <img class="js-svg-injector u-header__promo-icon" src="{% static 'svg/icons/icon-19.svg' %}" alt="SVG">
                             <div class="media-body">
                               <span class="u-header__promo-title">Job</span>
                               <small class="u-header__promo-text">Job vacancy demo.</small>
@@ -703,7 +686,7 @@
                       <div class="u-header__promo-item">
                         <a class="u-header__promo-link" href="../crypto//">
                           <div class="media align-items-center">
-                            <img class="js-svg-injector u-header__promo-icon" src="../../assets/svg/icons/icon-5.svg" alt="SVG">
+                            <img class="js-svg-injector u-header__promo-icon" src="{% static 'svg/icons/icon-5.svg' %}" alt="SVG">
                             <div class="media-body">
                               <span class="u-header__promo-title">Crypto landing</span>
                               <small class="u-header__promo-text">Cryptocurrency demo.</small>
@@ -802,7 +785,7 @@
 
               <!-- Button -->
               <li class="nav-item u-header__nav-last-item">
-                <a class="btn btn-sm btn-primary transition-3d-hover" href="https://themes.getbootstrap.com/product/front-multipurpose-responsive-template/" target="_blank">
+                <a class="btn btn-sm btn-primary transition-3d-hover" href="/products">
                   Buy Now
                 </a>
               </li>
@@ -820,7 +803,7 @@
   <main id="content" role="main">
 {% block content %}
 {% endblock %}
-  </main>
+</main>
   <!-- ========== END MAIN CONTENT ========== -->
 
   <!-- ========== FOOTER ========== -->
@@ -839,11 +822,9 @@
                 <li><a class="list-group-item list-group-item-action" href="../pages/careers.html">Careers</a></li>
               </ul>
               <!-- End List Group -->
-            </div>
-  
+            </div>  
             <div class="col-sm-4 col-lg-2 mb-4 mb-lg-0">
               <h4 class="h6 font-weight-semi-bold">Account</h4>
-  
               <!-- List Group -->
               <ul class="list-group list-group-flush list-group-borderless mb-0">
                 <li><a class="list-group-item list-group-item-action" href="../account/dashboard.html">Account</a></li>
@@ -901,315 +882,19 @@
       <div class="container text-center space-1">
         <!-- Logo -->
         <a class="d-inline-flex align-items-center mb-2" href="/" aria-label="Front">
-          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="36px" height="36px" viewBox="0 0 46 46" xml:space="preserve" style="margin-bottom: 0;">
-            <path fill="#3F7DE0" opacity=".65" d="M23,41L23,41c-9.9,0-18-8-18-18v0c0-9.9,8-18,18-18h11.3C38,5,41,8,41,11.7V23C41,32.9,32.9,41,23,41z"/>
-            <path class="fill-info" opacity=".5" d="M28,35.9L28,35.9c-9.9,0-18-8-18-18v0c0-9.9,8-18,18-18l11.3,0C43,0,46,3,46,6.6V18C46,27.9,38,35.9,28,35.9z"/>
-            <path class="fill-primary" opacity=".7" d="M18,46L18,46C8,46,0,38,0,28v0c0-9.9,8-18,18-18h11.3c3.7,0,6.6,3,6.6,6.6V28C35.9,38,27.9,46,18,46z"/>
-            <path class="fill-white" d="M17.4,34V18.3h10.2v2.9h-6.4v3.4h4.8v2.9h-4.8V34H17.4z"/>
-          </svg>
-          <span class="brand brand-primary">Front</span>
+          <img class="u-header__navbar-brand-default" src="{% static 'img/vriksh.svg' %}" alt="Logo">
+          <span class="u-header__navbar-brand-text">VRIKSH</span>
         </a>
         <!-- End Logo -->
-        <p class="small text-muted">&copy; Front. 2018 Htmlstream. All rights reserved.</p>
+        <p class="small text-muted">&copy; Vriksh. 2019. All rights reserved.</p>
       </div>
       <!-- End Copyright -->
-    </footer> 
+    </footer>
   <!-- ========== END FOOTER ========== -->
 
   <!-- ========== SECONDARY CONTENTS ========== -->
-  <!-- Account Sidebar Navigation -->
 
-  <aside id="sidebarContent" class="u-sidebar" aria-labelledby="sidebarNavToggler">
-      
-      <div class="u-sidebar__scroller">
-          <div class="u-sidebar__container">
-            <div class="u-header-sidebar__footer-offset">
-              <!-- Toggle Button -->
-              <div class="d-flex align-items-center pt-4 px-7">
-                <button type="button" class="close ml-auto"
-                        aria-controls="sidebarContent"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                        data-unfold-event="click"
-                        data-unfold-hide-on-scroll="false"
-                        data-unfold-target="#sidebarContent"
-                        data-unfold-type="css-animation"
-                        data-unfold-animation-in="fadeInRight"
-                        data-unfold-animation-out="fadeOutRight"
-                        data-unfold-duration="500">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <!-- End Toggle Button -->
-    
-              <!-- Content -->
-              <div class="js-scrollbar u-sidebar__body">
-                <div class="u-sidebar__content u-header-sidebar__content">
-                  <form class="js-validate">
-                    <!-- Login -->
-                    <div id="login" data-target-group="idForm">
-                      <!-- Title -->
-                      <header class="text-center mb-7">
-                        <h2 class="h4 mb-0">Welcome Back!</h2>
-                        <p>Login to manage your account.</p>
-                      </header>
-                      <!-- End Title -->
-    
-                      <!-- Form Group -->
-                      <div class="form-group">
-                        <div class="js-form-message js-focus-state">
-                          <label class="sr-only" for="signinEmail">Email</label>
-                          <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="signinEmailLabel">
-                                <span class="fas fa-user"></span>
-                              </span>
-                            </div>
-                            <input type="email" class="form-control" name="email" id="signinEmail" placeholder="Email" aria-label="Email" aria-describedby="signinEmailLabel" required
-                                   data-msg="Please enter a valid email address."
-                                   data-error-class="u-has-error"
-                                   data-success-class="u-has-success">
-                          </div>
-                        </div>
-                      </div>
-                      <!-- End Form Group -->
-    
-                      <!-- Form Group -->
-                      <div class="form-group">
-                        <div class="js-form-message js-focus-state">
-                          <label class="sr-only" for="signinPassword">Password</label>
-                          <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="signinPasswordLabel">
-                                <span class="fas fa-lock"></span>
-                              </span>
-                            </div>
-                            <input type="password" class="form-control" name="password" id="signinPassword" placeholder="Password" aria-label="Password" aria-describedby="signinPasswordLabel" required
-                                   data-msg="Your password is invalid. Please try again."
-                                   data-error-class="u-has-error"
-                                   data-success-class="u-has-success">
-                          </div>
-                        </div>
-                      </div>
-                      <!-- End Form Group -->
-    
-                      <div class="d-flex justify-content-end mb-4">
-                        <a class="js-animation-link small link-muted" href="javascript:;"
-                           data-target="#forgotPassword"
-                           data-link-group="idForm"
-                           data-animation-in="slideInUp">Forgot Password?</a>
-                      </div>
-    
-                      <div class="mb-2">
-                        <button type="submit" class="btn btn-block btn-sm btn-primary transition-3d-hover">Login</button>
-                      </div>
-    
-                      <div class="text-center mb-4">
-                        <span class="small text-muted">Do not have an account?</span>
-                        <a class="js-animation-link small" href="javascript:;"
-                           data-target="#signup"
-                           data-link-group="idForm"
-                           data-animation-in="slideInUp">Signup
-                        </a>
-                      </div>
-    
-                      <div class="text-center">
-                        <span class="u-divider u-divider--xs u-divider--text mb-4">OR</span>
-                      </div>
-    
-                      <!-- Login Buttons -->
-                      <div class="d-flex">
-                        <a class="btn btn-block btn-sm btn-soft-facebook transition-3d-hover mr-1" href="#">
-                          <span class="fab fa-facebook-square mr-1"></span>
-                          Facebook
-                        </a>
-                        <a class="btn btn-block btn-sm btn-soft-google transition-3d-hover ml-1 mt-0" href="#">
-                          <span class="fab fa-google mr-1"></span>
-                          Google
-                        </a>
-                      </div>
-                      <!-- End Login Buttons -->
-                    </div>
-    
-                    <!-- Signup -->
-                    <div id="signup" style="display: none; opacity: 0;" data-target-group="idForm">
-                      <!-- Title -->
-                      <header class="text-center mb-7">
-                        <h2 class="h4 mb-0">Welcome to VRIKSH.</h2>
-                        <p>Fill out the form to get started.</p>
-                      </header>
-                      <!-- End Title -->
-    
-                      <!-- Form Group -->
-                      <div class="form-group">
-                        <div class="js-form-message js-focus-state">
-                          <label class="sr-only" for="signupEmail">Email</label>
-                          <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="signupEmailLabel">
-                                <span class="fas fa-user"></span>
-                              </span>
-                            </div>
-                            <input type="email" class="form-control" name="email" id="signupEmail" placeholder="Email" aria-label="Email" aria-describedby="signupEmailLabel" required
-                                   data-msg="Please enter a valid email address."
-                                   data-error-class="u-has-error"
-                                   data-success-class="u-has-success">
-                          </div>
-                        </div>
-                      </div>
-                      <!-- End Input -->
-    
-                      <!-- Form Group -->
-                      <div class="form-group">
-                        <div class="js-form-message js-focus-state">
-                          <label class="sr-only" for="signupPassword">Password</label>
-                          <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="signupPasswordLabel">
-                                <span class="fas fa-lock"></span>
-                              </span>
-                            </div>
-                            <input type="password" class="form-control" name="password" id="signupPassword" placeholder="Password" aria-label="Password" aria-describedby="signupPasswordLabel" required
-                                   data-msg="Your password is invalid. Please try again."
-                                   data-error-class="u-has-error"
-                                   data-success-class="u-has-success">
-                          </div>
-                        </div>
-                      </div>
-                      <!-- End Input -->
-    
-                      <!-- Form Group -->
-                      <div class="form-group">
-                        <div class="js-form-message js-focus-state">
-                          <label class="sr-only" for="signupConfirmPassword">Confirm Password</label>
-                          <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="signupConfirmPasswordLabel">
-                                <span class="fas fa-key"></span>
-                              </span>
-                            </div>
-                            <input type="password" class="form-control" name="confirmPassword" id="signupConfirmPassword" placeholder="Confirm Password" aria-label="Confirm Password" aria-describedby="signupConfirmPasswordLabel" required
-                                   data-msg="Password does not match the confirm password."
-                                   data-error-class="u-has-error"
-                                   data-success-class="u-has-success">
-                          </div>
-                        </div>
-                      </div>
-                      <!-- End Input -->
-    
-    
-    
-                      <div class="mb-2">
-                        <button type="submit" class="btn btn-block btn-sm btn-primary transition-3d-hover">Get Started</button>
-                      </div>
-    
-                      <div class="text-center mb-4">
-                        <span class="small text-muted">Already have an account?</span>
-                        <a class="js-animation-link small" href="javascript:;"
-                           data-target="#login"
-                           data-link-group="idForm"
-                           data-animation-in="slideInUp">Login
-                        </a>
-                      </div>
-    
-                      <div class="text-center">
-                        <span class="u-divider u-divider--xs u-divider--text mb-4">OR</span>
-                      </div>
-    
-                      <!-- Login Buttons -->
-                      <div class="d-flex">
-                        <a class="btn btn-block btn-sm btn-soft-facebook transition-3d-hover mr-1" href="#">
-                          <span class="fab fa-facebook-square mr-1"></span>
-                          Facebook
-                        </a>
-                        <a class="btn btn-block btn-sm btn-soft-google transition-3d-hover ml-1 mt-0" href="#">
-                          <span class="fab fa-google mr-1"></span>
-                          Google
-                        </a>
-                      </div>
-                      <!-- End Login Buttons -->
-                    </div>
-                    <!-- End Signup -->
-    
-                    <!-- Forgot Password -->
-                    <div id="forgotPassword" style="display: none; opacity: 0;" data-target-group="idForm">
-                      <!-- Title -->
-                      <header class="text-center mb-7">
-                        <h2 class="h4 mb-0">Recover Password.</h2>
-                        <p>Enter your email address and an email with instructions will be sent to you.</p>
-                      </header>
-                      <!-- End Title -->
-    
-                      <!-- Form Group -->
-                      <div class="form-group">
-                        <div class="js-form-message js-focus-state">
-                          <label class="sr-only" for="recoverEmail">Your email</label>
-                          <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="recoverEmailLabel">
-                                <span class="fas fa-user"></span>
-                              </span>
-                            </div>
-                            <input type="email" class="form-control" name="email" id="recoverEmail" placeholder="Your email" aria-label="Your email" aria-describedby="recoverEmailLabel" required
-                                   data-msg="Please enter a valid email address."
-                                   data-error-class="u-has-error"
-                                   data-success-class="u-has-success">
-                          </div>
-                        </div>
-                      </div>
-                      <!-- End Form Group -->
-    
-                      <div class="mb-2">
-                        <button type="submit" class="btn btn-block btn-sm btn-primary transition-3d-hover">Recover Password</button>
-                      </div>
-    
-                      <div class="text-center mb-4">
-                        <span class="small text-muted">Remember your password?</span>
-                        <a class="js-animation-link small" href="javascript:;"
-                           data-target="#login"
-                           data-link-group="idForm"
-                           data-animation-in="slideInUp">Login
-                        </a>
-                      </div>
-                    </div>
-                    <!-- End Forgot Password -->
-                  </form>
-                </div>
-              </div>
-              <!-- End Content -->
-            </div>
-    
-            <!-- Footer -->
-            <footer id="SVGwaveWithDots" class="svg-preloader u-sidebar__footer u-sidebar__footer--account">
-              <ul class="list-inline mb-0">
-                <li class="list-inline-item pr-3">
-                  <a class="u-sidebar__footer--account__text" href="../pages/privacy.html">Privacy</a>
-                </li>
-                <li class="list-inline-item pr-3">
-                  <a class="u-sidebar__footer--account__text" href="../pages/terms.html">Terms</a>
-                </li>
-                <li class="list-inline-item">
-                  <a class="u-sidebar__footer--account__text" href="../pages/help.html">
-                    <i class="fas fa-info-circle"></i>
-                  </a>
-                </li>
-              </ul>
-    
-              <!-- SVG Background Shape -->
-              <div class="position-absolute right-0 bottom-0 left-0">
-                <img class="js-svg-injector" src="{% static 'svg/components/wave-bottom-with-dots.svg' %}" alt="Image Description"
-                       data-parent="#SVGwaveWithDots">
-              </div>
-              <!-- End SVG Background Shape -->
-            </footer>
-            <!-- End Footer -->
-          </div>
-        </div>
-  </aside>
-s
-  <!-- End Account Sidebar Navigation -->
-
-  <!-- Account Sidebar Navigation -->
+  <!-- Cart Navigation -->
 <aside id="sidebarcartContent" class="u-sidebar" aria-labelledby="sidebarcartToggler">
     <div class="u-sidebar__scroller">
       <div class="u-sidebar__container">
@@ -1239,12 +924,13 @@ s
           <div class="js-scrollbar u-sidebar__body">
             <div class="u-sidebar__content">
               <!-- Body -->
+              <div class="card-body p-5"> 
               {% if cart.products.exists %}
               {% for product in cart.products.all %}
-              <div class="card-body p-5"> 
+
                 <div class="media">
                   <div class="u-avatar mr-3">
-                    <img class="img-fluid rounded" src="{{ product.image.url }}" alt="Image Description">
+                    <img class="img-fluid rounded" src="{{ product.image.url }}">
                   </div>
                   <div class="media-body">
                     <div class="d-flex justify-content-between align-items-center">
@@ -1253,13 +939,12 @@ s
                         <span aria-hidden="true">×</span>
                       </button>
                     </div>
-                    <span class="d-block text-primary font-weight-semi-bold">{{ product.price }}</span>
+                    <span class="d-block text-primary font-weight-semi-bold">INR {{ product.price }}</span>
+                    {% include 'carts/snippets/remove-product.html' with product_id=product.id %}
                   </div>
                 </div>
-                {% endfor %}
-                
                 <hr>
-              </div>
+              {% endfor %}            
               {% else %}
                 <div class="card-body text-center p-5">
                     <span class="btn btn-icon btn-soft-primary rounded-circle">
@@ -1271,6 +956,7 @@ s
             </div>
           </div>
         </div>
+      </div>
       </div>
     </div>
     <!-- End Content -->
@@ -1284,15 +970,16 @@ s
           <span class="d-block">INR {{ cart.total }}</span>
         </div>
         <div class="mb-2">
-          <a class="btn btn-sm btn-soft-primary disabled transition-3d-hover" href="/cart">Review Bag and Checkout</a>
+          <a class="btn btn-sm btn-soft-primary transition-3d-hover" href="/cart">Review Bag and Checkout</a>
         </div>    
          {% else %}
         <p class="small mb-0"><a class="link-muted" href="javascript:;">Start Shopping</a></p>
-      </div>
       {% endif %}
+    </div>
     </footer>
     <!-- End Footer -->
     </aside>
+  <!-- End Cart Navigation -->  
   <!-- ========== END SECONDARY CONTENTS ========== -->
 
   <!-- Go to Top -->
@@ -1307,95 +994,10 @@ s
   </a>
   <!-- End Go to Top -->
 
-  <!-- JS Global Compulsory -->
-  <script src="{% static 'vendor/jquery/dist/jquery.min.js' %}"></script>
-  <script src="{% static 'vendor/jquery-migrate/dist/jquery-migrate.min.js' %}"></script>
-  <script src="{% static 'vendor/popper.js/dist/umd/popper.min.js' %}"></script>
-  <script src="{% static 'vendor/bootstrap/bootstrap.min.js' %}"></script>
+  {% include 'base/js.html' %}
+  {% block javascript %}
+  {% endblock %}
 
-  <!-- JS Implementing Plugins -->
-  <script src="{% static 'vendor/hs-megamenu/src/hs.megamenu.js' %}"></script>
-  <script src="{% static 'vendor/svg-injector/dist/svg-injector.min.js' %}"></script>
-  <script src="{% static 'vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js' %}"></script>
-  <script src="{% static 'vendor/jquery-validation/dist/jquery.validate.min.js' %}"></script>
-  <script src="{% static 'vendor/fancybox/jquery.fancybox.min.js' %}"></script>
-  <script src="{% static 'vendor/typed.js/lib/typed.min.js' %}"></script>
-  <script src="{% static 'vendor/slick-carousel/slick/slick.js' %}"></script>
-
-  <!-- JS VRIKSH -->
-  <script src="{% static 'js/hs.core.js' %}"></script>
-  <script src="{% static 'js/components/hs.header.js' %}"></script>
-  <script src="{% static 'js/components/hs.unfold.js' %}"></script>
-  <script src="{% static 'js/components/hs.focus-state.js' %}"></script>
-  <script src="{% static 'js/components/hs.malihu-scrollbar.js' %}"></script>
-  <script src="{% static 'js/components/hs.validation.js' %}"></script>
-  <script src="{% static 'js/components/hs.fancybox.js' %}"></script>
-  <script src="{% static 'js/components/hs.show-animation.js' %}"></script>
-  <script src="{% static 'js/components/hs.slick-carousel.js' %}"></script>
-  <script src="{% static 'js/components/hs.svg-injector.js' %}"></script>
-  <script src="{% static 'js/components/hs.go-to.js' %}"></script>
-
-  <!-- JS Plugins Init. -->
-  <script>
-    $(window).on('load', function () {
-      // initialization of HSMegaMenu component
-      $('.js-mega-menu').HSMegaMenu({
-        event: 'hover',
-        pageContainer: $('.container'),
-        breakpoint: 767.98,
-        hideTimeOut: 0
-      });
-
-      // initialization of svg injector module
-      $.HSCore.components.HSSVGIngector.init('.js-svg-injector');
-    });
-
-    $(document).on('ready', function () {
-      // initialization of header
-      $.HSCore.components.HSHeader.init($('#header'));
-
-      // initialization of unfold component
-      $.HSCore.components.HSUnfold.init($('[data-unfold-target]'), {
-        afterOpen: function () {
-          $(this).find('input[type="search"]').focus();
-        }
-      });
-
-      // initialization of malihu scrollbar
-      $.HSCore.components.HSMalihuScrollBar.init($('.js-scrollbar'));
-
-      // initialization of forms
-      $.HSCore.components.HSFocusState.init();
-
-      // initialization of form validation
-      $.HSCore.components.HSValidation.init('.js-validate', {
-        rules: {
-          confirmPassword: {
-            equalTo: '#signupPassword'
-          }
-        }
-      });
-
-      // initialization of show animations
-      $.HSCore.components.HSShowAnimation.init('.js-animation-link');
-  // initialization of fancybox
-  $.HSCore.components.HSFancyBox.init('.js-fancybox');
-
-// initialization of text animation (typing)
-var typed = new Typed(".u-text-animation.u-text-animation--typing", {
-  strings: ["in all varieties.", "in all colors.", "at discounted prices"],
-  typeSpeed: 60,
-  loop: true,
-  backSpeed: 25,
-  backDelay: 1500
-});
-
-      // initialization of slick carousel
-      $.HSCore.components.HSSlickCarousel.init('.js-slick-carousel');
-
-      // initialization of go to
-      $.HSCore.components.HSGoTo.init('.js-go-to');
-    });
-  </script>
+  
 </body>
 </html>

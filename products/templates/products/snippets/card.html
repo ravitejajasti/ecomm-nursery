@@ -2,11 +2,11 @@
     <a class="d-block card card-text-dark border-0 text-center transition-3d-hover" href="{{ instance.get_absolute_url }}">
       <img class="img-fluid rounded" src="{{ instance.image.url }}" alt="{{ instance.title}} logo">
     {% endif %}
-  <div class="card-body pt-4 px-4">
-    <h4 class="h5 mb-1">{{ instance.title }}</h4>
-  </a>
-    <div class='text-center'>
-      <h6>INR {{ instance.price }}</h6>
+    <div class="card-body pt-4 px-4">
+      <h4 class="h5 mb-1">{{ instance.title }}</h4>
+    </a>
+      <div class='text-center'>
+        <h6>INR {{ instance.price }}</h6>
+      </div>
+     <!--  <a href="{% url 'products:detail' slug=instance.slug  %}" class="btn btn-warning">URL shortcut</a> -->
     </div>
-   <!--  <a href="{% url 'products:detail' slug=instance.slug  %}" class="btn btn-warning">URL shortcut</a> -->
-  </div>

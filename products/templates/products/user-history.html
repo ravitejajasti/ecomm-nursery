@@ -1,6 +1,6 @@
 {% extends "base.html" %}
-
 {% block content %}
+<div class="container space-2 space-top-md-4 space-bottom-md-2 space-top-lg-3">
         <div class='row'>
             <div class='col-12 my-3'>
                     <h1>Product View History</h1>
@@ -12,5 +12,6 @@
         {% include 'products/snippets/card.html' with instance=obj.content_object %}  
         </div>
     {% endfor %}
+</div>
 </div>
 {% endblock %}

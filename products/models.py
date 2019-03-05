@@ -75,6 +75,26 @@ class Product(models.Model):
     active          = models.BooleanField(default=True)
     timestamp       = models.DateTimeField(auto_now_add=True)
     is_digital      = models.BooleanField(default=False) # User Library
+    low_maintenance = models.BooleanField(default=False)
+    medicinal       = models.BooleanField(default=False)
+    air_purifier    = models.BooleanField(default=False)
+    flowering       = models.BooleanField(default=False)
+    fruit_plant     = models.BooleanField(default=False)
+    insect_repllenet= models.BooleanField(default=False)
+    holy            = models.BooleanField(default=False)
+    cactus_n_succ   = models.BooleanField(default=False)
+    creepers        = models.BooleanField(default=False)
+    herbs           = models.BooleanField(default=False)
+    indoor          = models.BooleanField(default=False)
+    miniatures      = models.BooleanField(default=False)
+    is_digital      = models.BooleanField(default=False)
+    is_digital      = models.BooleanField(default=False)
+    seasonal        = models.BooleanField(default=False)
+    ferns           = models.BooleanField(default=False)
+    office          = models.BooleanField(default=False)
+    balcony         = models.BooleanField(default=False)
+
+
 
     objects = ProductManager()
 

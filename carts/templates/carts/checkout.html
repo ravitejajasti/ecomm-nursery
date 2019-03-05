@@ -1,5 +1,9 @@
 {% extends "base.html" %}
+
+
 {% block content %}
+<div class="container space-2 space-top-md-4 space-bottom-md-2 space-top-lg-3">
+    <div class="row">
 {% if not billing_profile %}
     <div class='row text-center'>
     <div class='col-12 col-md-6'>
@@ -64,24 +68,23 @@
             {% if not has_card %}
                 <!-- enter credit card here -->
                 <div class='stripe-payment-form' data-token='{{ publish_key }}' data-next-url='{{ request.build_absolute_uri }}' data-btn-title='Add Payment Method'></div>
-
             {% else %}
                 <h1>Finalize Checkout</h1>
-                <p>Cart Items: {% for product in object.cart.products.all %}{{ product }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
-                <p>Shipping Address: {{ object.shipping_address_final }}</p>
-                <p>Billing Address: {{ object.billing_address_final }}</p>
-                <p>Payment Method: {{ billing_profile.default_card }} (<a href="{{ billing_profile.get_payment_method_url }}?next={{ request.build_absolute_uri }}">Change</a>)</p>
-                <p>Cart Total: {{ object.cart.total }}</p>
-                <p>Shipping Total: {{ object.shipping_total }}</p>
-                <p>Order Total: {{ object.total }}</p>
+                <br />
+                <p class="col-12"><strong>Cart Items:</strong> {% for product in object.cart.products.all %}{{ product }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+                <p class="col-6"><strong>Shipping Address:</strong> {{ object.shipping_address_final }}</p>
+                <p class="col-6"><strong>Billing Address:</strong> {{ object.billing_address_final }}</p>
+                <p class="col-6"><strong>Payment Method:</strong> {{ billing_profile.default_card }} (<a href="{{ billing_profile.get_payment_method_url }}?next={{ request.build_absolute_uri }}">Change</a>)</p>
+                <p class="col-6"><strong>Cart Total:</strong> {{ object.cart.total }}</p>
+                <p class="col-6"><strong>Shipping Total:</strong> {{ object.shipping_total }}</p>
+                <p class="col-6"><strong>Order Total:</strong> {{ object.total }}</p>
 
                 <form class='form' method='POST' action="">{% csrf_token %}
-                    <button type='submit' class='btn btn-success'>Checkout</button>
+                    <br /><button type='submit' class='btn btn-default btn-primary transition-3d-hover'>Checkout</button>
                 </form>
             {% endif %}
         {% endif %}
 {% endif %}
-
-
-
+</div>
+</div>
 {% endblock %}

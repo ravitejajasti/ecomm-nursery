@@ -203,7 +203,13 @@ from ecommerce.aws.conf import *
 
 # Let's Encrypt ssl/tls https
 CORS_ORIGIN_ALLOW_ALL = True
-
+CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_WHITELIST = (
+    'localhost:8000', '127.0.0.1', 'vriksh-static.s3.amazonaws.com'
+)
+CORS_ORIGIN_REGEX_WHITELIST = (
+    'localhost:8000', '127.0.0.1', 'vriksh-static.s3.amazonaws.com'
+)
 CORS_REPLACE_HTTPS_REFERER      = True
 HOST_SCHEME                     = "https://"
 SECURE_PROXY_SSL_HEADER         = ('HTTP_X_FORWARDED_PROTO', 'https')

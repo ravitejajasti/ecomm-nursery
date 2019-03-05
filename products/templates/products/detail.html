@@ -22,12 +22,10 @@
                 {% if object.image %}
                 <img src='{{ object.image.url }}' class='img-fluid' />
             {% endif %}
-            {% include 'products/snippets/update-cart.html' with product=object cart=cart %}
-
               </div>
             </div>
             <!-- End Item -->
-
+            {% if object.image2 %}
             <!-- Item -->
             <div class="cbp-item">
               <div class="cbp-caption">
@@ -51,6 +49,9 @@
               </div>
             </div>
             <!-- End Item -->
+            {% endif %}
+            <br />
+            <p><i>* Images are for representative purpose only.</i></p>
           </div>
           <!-- End Cubeportfolio -->
         </div>
@@ -69,7 +70,7 @@
               <p class="mb-0">{{ object.timestamp|timesince }} ago
                 {{ object.description|linebreaks }}</p>
             </div>
-
+            {% include 'products/snippets/update-cart.html' with product=object cart=cart %}
             <hr class="my-5">
 
             <!-- List -->

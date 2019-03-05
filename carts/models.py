@@ -32,7 +32,7 @@ class CartManager(models.Manager):
         return self.model.objects.create(user=user_obj)
 
 class Cart(models.Model):
-    user        = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL)
+    user        = models.ForeignKey(User, null=True, blank=True,on_delete=models.CASCADE)
     products    = models.ManyToManyField(Product, blank=True)
     subtotal    = models.DecimalField(default=0.00, max_digits=100, decimal_places=2)
     total       = models.DecimalField(default=0.00, max_digits=100, decimal_places=2)
@@ -77,16 +77,3 @@ def pre_save_cart_receiver(sender, instance, *args, **kwargs):
         instance.total = 0.00
 
 pre_save.connect(pre_save_cart_receiver, sender=Cart)
-
-
-
-
-
-
-
-
-
-
-
-
-
