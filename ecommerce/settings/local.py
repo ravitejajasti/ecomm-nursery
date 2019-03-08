@@ -31,7 +31,7 @@ EMAIL_HOST_USER = 'ravi.algarytm@gmail.com' # sendgrid
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', 'Qwerty123!')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'Python ecommerce <ravi.algarytm@gmail.com>'
+DEFAULT_FROM_EMAIL = 'Vriksh <ravi.algarytm@gmail.com>'
 BASE_URL = '127.0.0.1:8000'
 
 MANAGERS = (
@@ -54,7 +54,6 @@ INSTALLED_APPS = [
     # third party
     'storages',
     'corsheaders',
-
 
     #our apps
     'accounts',
@@ -195,8 +194,6 @@ CORS_ORIGIN_WHITELIST = (
 CORS_ORIGIN_REGEX_WHITELIST = (
     'localhost:8000', '127.0.0.1', 'vriksh-static.s3.amazonaws.com'
 )
-
-
 CORS_REPLACE_HTTPS_REFERER      = False
 HOST_SCHEME                     = "http://"
 SECURE_PROXY_SSL_HEADER         = None
