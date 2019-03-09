@@ -24,12 +24,12 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 
 
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'ravi.algarytm@gmail.com' 
+EMAIL_HOST = 'smtp-mail.outlook.com'
+EMAIL_HOST_USER = 'ravi.j@vriksh.me' 
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'Vriksh <ravi.algarytm@gmail.com>'
+DEFAULT_FROM_EMAIL = 'Vriksh <ravi.j@vriksh.me>'
 BASE_URL = 'https://www.vriksh.me'
 
 MANAGERS = (

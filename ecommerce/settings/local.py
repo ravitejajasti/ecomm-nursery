@@ -26,12 +26,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', 'vriksh.herokuapp.com']
 
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'ravi.algarytm@gmail.com' # sendgrid
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', 'Qwerty123!')
+EMAIL_HOST = 'smtp-mail.outlook.com'
+EMAIL_HOST_USER = 'ravi.j@vriksh.me' # sendgrid
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', 'Laddu123!')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'Vriksh <ravi.algarytm@gmail.com>'
+DEFAULT_FROM_EMAIL = 'Vriksh <ravi.j@vriksh.me>'
 BASE_URL = '127.0.0.1:8000'
 
 MANAGERS = (
