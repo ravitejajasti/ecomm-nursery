@@ -26,7 +26,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'ravi.algarytm@gmail.com' 
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD','Qwerty123!')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'Vriksh <ravi.algarytm@gmail.com>'
