@@ -34,7 +34,7 @@ class BillingProfileManager(models.Manager):
         return obj, created
 
 class BillingProfile(models.Model):
-    user        = models.OneToOneField(User, null=True, blank=True, on_delete=models.DO_NOTHING)
+    user        = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
     email       = models.EmailField()
     active      = models.BooleanField(default=True)
     update      = models.DateTimeField(auto_now=True)
@@ -115,7 +115,7 @@ class CardManager(models.Manager):
 
 
 class Card(models.Model):
-    billing_profile         = models.ForeignKey(BillingProfile, on_delete=models.DO_NOTHING)
+    billing_profile         = models.ForeignKey(BillingProfile, on_delete=models.CASCADE)
     stripe_id               = models.CharField(max_length=120)
     brand                   = models.CharField(max_length=120, null=True, blank=True)
     country                 = models.CharField(max_length=20, null=True, blank=True)
@@ -182,7 +182,7 @@ class ChargeManager(models.Manager):
 
 
 class Charge(models.Model):
-    billing_profile         = models.ForeignKey(BillingProfile, on_delete=models.DO_NOTHING)
+    billing_profile         = models.ForeignKey(BillingProfile, on_delete=models.CASCADE)
     stripe_id               = models.CharField(max_length=120)
     paid                    = models.BooleanField(default=False)
     refunded                = models.BooleanField(default=False)

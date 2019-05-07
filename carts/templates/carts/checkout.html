@@ -6,8 +6,9 @@
 {% endblock %}
 
 {% block content %}
-<div class="container space-2 space-top-md-4 space-bottom-md-2 space-top-lg-3">
-    <div class="row">
+<div class="d-lg-flex position-relative">
+    <div class="container d-lg-flex align-items-lg-center space-top-2 space-top-md-5 space-lg-0 min-height-lg-100vh">
+  <div class="row">
 {% if not billing_profile %}
     <div class='row text-center'>
     <div class='col-12 col-md-6'>
@@ -89,6 +90,7 @@
             {% endif %}
         {% endif %}
 {% endif %}
+</div>
 </div>
 </div>
 {% endblock %}

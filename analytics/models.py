@@ -33,9 +33,9 @@ class ObjectViewedManager(models.Manager):
         return self.get_queryset().by_model(model_class, model_queryset=model_queryset)
     
 class ObjectViewed(models.Model):
-    user                = models.ForeignKey(User, blank=True, null=True, on_delete=models.DO_NOTHING) # User instance instance.id
+    user                = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE) # User instance instance.id
     ip_address          = models.CharField(max_length=220, blank=True, null=True) #IP Field
-    content_type        = models.ForeignKey(ContentType, on_delete=models.DO_NOTHING) # User, Product, Order, Cart, Address
+    content_type        = models.ForeignKey(ContentType, on_delete=models.CASCADE) # User, Product, Order, Cart, Address
     object_id           = models.PositiveIntegerField() # User id, Product id, Order id,
     content_object      = GenericForeignKey('content_type', 'object_id') # Product instance
     timestamp           = models.DateTimeField(auto_now_add=True)
@@ -71,7 +71,7 @@ object_viewed_signal.connect(object_viewed_receiver)
 
 
 class UserSession(models.Model):
-    user                = models.ForeignKey(User, blank=True, null=True, on_delete=models.DO_NOTHING) # User instance instance.id
+    user                = models.ForeignKey(User, blank=True, on_delete=models.CASCADE) # User instance instance.id
     ip_address          = models.CharField(max_length=220, blank=True, null=True) #IP Field
     session_key         = models.CharField(max_length=100, blank=True, null=True) #min 50
     timestamp           = models.DateTimeField(auto_now_add=True)

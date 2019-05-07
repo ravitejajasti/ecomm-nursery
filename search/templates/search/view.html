@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div class="d-lg-flex position-relative">
+        <div class="container space-2 space-top-md-4 space-bottom-md-2 space-top-lg-3">
+
  <div class='row  mb-3'>
             {% if query %}
             <div class='col-12' >
@@ -30,9 +33,17 @@
         {% include 'products/snippets/card.html' with instance=obj %}  
         
         {% if forloop.counter|divisibleby:3 %}
-         </div> </div><div class='row'><div class='col-12'><hr/></div>
+         </div>
+        </div>
+         <div class='row'>
+             <div class='col-12'>
+                 <hr/>
+                </div>
         {% elif forloop.counter|divisibleby:2 %}
-            </div> </div><div class='row'><div class='col-12'><hr/></div>
+            </div> </div>
+            <div class='row'>
+                <div class='col-12'>
+                    <hr/></div>
         {% else %}
          </div>  
         {% endif %}
@@ -40,4 +51,5 @@
     
     {% endfor %}
 </div>
+
 {% endblock %}

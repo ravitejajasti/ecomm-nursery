@@ -96,6 +96,7 @@ class User(AbstractBaseUser):
     def is_admin(self):
         return self.admin
 
+
     # @property
     # def is_active(self):
     #     return self.active
@@ -224,3 +225,22 @@ class GuestEmail(models.Model):
 
     def __str__(self):
         return self.email
+
+# #  Testing Follower System
+
+# class Contact(models.Model):
+#     user_from	=	models.ForeignKey('auth.User',related_name='rel_from_set',on_delete=models.CASCADE)				
+#     user_to	=	models.ForeignKey('auth.User',related_name='rel_to_set',on_delete=models.CASCADE)
+#     created	=	models.DateTimeField(auto_now_add=True,db_index=True)
+
+# class Metay:
+#     ordering = ('-created',)
+#     def	__str__(self):
+#         return	'{}	follows	{}'.format(self.user_from,self.user_to)
+#     user1=User.objects.get(id=1) 
+#     user2=User.objects.get(id=2)
+#     Contact.objects.create(user_from=user1,user_to=user2)
+
+# from django.contrib.auth.models import User
+# # Add following field to User dynamically
+# User.add_to_class('following', models.ManyToManyField('self',through=Contact,related_name='followers',symmetrical=False))

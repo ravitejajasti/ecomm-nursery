@@ -188,12 +188,7 @@ PROTECTED_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn", "protecte
 from ecommerce.aws.conf import *
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
-CORS_ORIGIN_WHITELIST = (
-    'localhost:8000', '127.0.0.1:8000', 'vriksh-static.s3.amazonaws.com'
-)
-CORS_ORIGIN_REGEX_WHITELIST = (
-    'localhost:8000', '127.0.0.1', 'vriksh-static.s3.amazonaws.com'
-)
+
 CORS_REPLACE_HTTPS_REFERER      = False
 HOST_SCHEME                     = "http://"
 SECURE_PROXY_SSL_HEADER         = None

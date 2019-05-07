@@ -4,12 +4,16 @@
   Payment Method
 
 {% endblock %}{% block content %}
-<div class="container space-2 space-top-md-4 space-bottom-md-2 space-top-lg-3">
-    <div class="row">
+            <div class="bg-light">
+              <div class="d-lg-flex position-relative">
+                <div class="container d-lg-flex align-items-lg-center space-top-2 space-top-md-5 space-lg-0 min-height-lg-100vh">
+                  <div class="row">
 
 <div class='col-10 col-md-6 mx-auto'>
     <h1>Add Payment Method</h1>
     <div class='stripe-payment-form' data-token='{{ publish_key }}' data-next-url='{% if next_url %}{{ next_url }}{% endif %}' data-btn-title='Add New Card'></div>
+</div>
+</div>
 </div>
 </div>
 </div>

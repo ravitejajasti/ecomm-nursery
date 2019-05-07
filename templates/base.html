@@ -49,8 +49,8 @@
           <!-- End Close Button -->
 
           <!-- Input -->
-          <form class="js-focus-state input-group input-group-lg">
-            <input type="search" class="form-control" placeholder="Search Front" aria-label="Search Front">
+          <form class="js-focus-state input-group input-group-lg"method="GET" action="{% url "search:query" %}">
+            <input type="search" class="form-control" name="q" placeholder="Search VRIKSH" aria-label="Search Front">
             <div class="input-group-append">
               <button type="button" class="btn btn-primary">Search</button>
             </div>
@@ -264,7 +264,7 @@
         <nav class="js-mega-menu navbar navbar-expand-md u-header__navbar u-header__navbar--no-space">
           <!-- Logo -->
           <a class="navbar-brand u-header__navbar-brand u-header__navbar-brand-center" href="/" aria-label="Front">
-            <img class="u-header__navbar-brand-default" src="{% static 'img/vriksh.svg' %}" alt="Logo">
+            <img class="u-header__navbar-brand-default" src="{% static 'img/vriksh.png' %}" alt="Logo">
 
             <span class="u-header__navbar-brand-text">VRIKSH</span>
           </a>

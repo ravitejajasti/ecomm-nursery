@@ -6,9 +6,10 @@
 {% endblock %}{% block content %}
   <!-- ========== MAIN CONTENT ========== -->
         <!-- Cart Section -->
-         <div class="bg-light">
-    <div class="container space-2 space-top-md-5 space-bottom-md-3 space-top-lg-4">
-      <div calss="row justify-content-lg-between align-items-lg-center">
+        <div class="bg-light">
+          <div class="d-lg-flex position-relative">
+          <div class="container d-lg-flex align-items-lg-center space-top-2 space-top-md-5 space-lg-0 min-height-lg-100vh">
+      <div class="row justify-content-lg-between align-items-lg-center">
         {% if cart.products.exists %}
         <!-- Title -->
         <div class="mb-6">
@@ -93,6 +94,7 @@
 </div>
 </div>
          </div>
+        </div>
 <div class='cart-item-remove-form' style='display:none'>
     {% include 'carts/snippets/remove-product.html' %}
   </div>

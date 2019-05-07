@@ -106,15 +106,16 @@ class GuestForm(forms.ModelForm):
 class LoginForm(forms.Form):
     email    = forms.EmailField(widget=forms.EmailInput(
        attrs={
-                'class':'form-control',
+                'class':'form-control select2',
             }
     ))
-    password = forms.CharField(widget=forms.PasswordInput(
-       attrs={
-                'class':'form-control',
-            }
+    password = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={
+                'class':'form-control select2',
+                }
     ))
-        
+    
 
     def __init__(self, request, *args, **kwargs):
         self.request = request
