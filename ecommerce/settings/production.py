@@ -205,7 +205,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 
 CORS_REPLACE_HTTPS_REFERER      = True
-HOST_SCHEME                     = "https://"
+HOST_SCHEME                     = "http://"
 SECURE_PROXY_SSL_HEADER         = ('HTTP_X_FORWARDED_PROTO', 'https')
 SECURE_SSL_REDIRECT             = True
 SESSION_COOKIE_SECURE           = True
