@@ -189,7 +189,7 @@ from ecommerce.aws.conf import *
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 
-CORS_REPLACE_HTTPS_REFERER      = False
+CORS_REPLACE_HTTPS_REFERER      = True
 HOST_SCHEME                     = "http://"
 SECURE_PROXY_SSL_HEADER         = None
 SECURE_SSL_REDIRECT             = False
