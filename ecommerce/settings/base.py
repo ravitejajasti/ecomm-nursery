@@ -193,8 +193,8 @@ PROTECTED_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn", "protecte
 from ecommerce.aws.conf import *
 
 
-CORS_REPLACE_HTTPS_REFERER      = True
-HOST_SCHEME                     = "http://"
+CORS_REPLACE_HTTPS_REFERER      = False
+HOST_SCHEME                     = "https://"
 SECURE_PROXY_SSL_HEADER         = None
 SECURE_SSL_REDIRECT             = False
 SESSION_COOKIE_SECURE           = False
