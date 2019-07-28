@@ -22,6 +22,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = False
+
+ALLOWED_HOSTS = ['vriksh.herokuapp.com']
 
 
 EMAIL_HOST = 'smtp-mail.outlook.com'
@@ -40,10 +44,6 @@ ADMINS = MANAGERS
 
 
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-
-ALLOWED_HOSTS = ['vriksh.herokuapp.com']
 
 CORS_ORIGIN_ALLOW_ALL=True
 
@@ -62,7 +62,7 @@ INSTALLED_APPS = [
     # third party
     'storages',
     'corsheaders',
-    "pinax.referrals",
+    #"pinax.referrals",
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -104,6 +104,16 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS=7
+ACCOUNT_EMAIL_VERIFICATION="optional"
+ACCOUNT_USERNAME_REQUIRED = False
+#AllAuth Login Redirect URL
+LOGIN_REDIRECT_URL='/'
+
 AUTH_USER_MODEL = 'accounts.User' #changes the built-in user model to ours
 LOGIN_URL = '/login/'
 LOGIN_URL_REDIRECT = '/'
@@ -134,7 +144,7 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.BrokenLinkEmailsMiddleware',
     'django.middleware.common.CommonMiddleware',
-    "pinax.referrals.middleware.SessionJumpingMiddleware",
+    #"pinax.referrals.middleware.SessionJumpingMiddleware",
 
 ]
 
@@ -246,6 +256,51 @@ SECURE_HSTS_INCLUDE_SUBDOMAINS  = True
 SECURE_HSTS_SECONDS             = 1000000
 SECURE_FRAME_DENY               = True
 
+SOCIALACCOUNT_PROVIDERS = {
+    'facebook': {
+        'METHOD': 'oauth2',
+        'SDK_URL': '//connect.facebook.net/{locale}/sdk.js',
+        'SCOPE': ['email', 'public_profile', 'user_friends'],
+        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+        'INIT_PARAMS': {'cookie': True},
+        'FIELDS': [
+            'id'
+            'email',
+            'first_name',
+            'last_name',
+            'verified',
+            'locale',
+            'timezone',
+            'link',
+            'gender',
+            'updated_time',
+        ],
+        'EXCHANGE_TOKEN': True,
+        'LOCALE_FUNC': lambda request: 'en_US',
+        'VERIFIED_EMAIL': True,
+        'VERSION': 'v2.12',
+    }
+}
 
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.core.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.request",
+)
 
 
