@@ -72,6 +72,9 @@ urlpatterns = [
     url(r'^settings/email/$', MarketingPreferenceUpdateView.as_view(), name='marketing-pref'),
     url(r'^webhooks/mailchimp/$', MailchimpWebhookView.as_view(), name='webhooks-mailchimp'),
     url(r'^admin/', admin.site.urls),
+    url(r"^referrals/", include("pinax.referrals.urls", namespace="pinax_referrals")),
+    url(r'^accounts/', include("allauth.urls")),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

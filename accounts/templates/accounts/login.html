@@ -24,93 +24,23 @@
           <!-- End SVG Quote -->
 
           <!-- Testimonials Carousel Main -->
-          <div id="testimonialsNavMain" class="js-slick-carousel u-slick mb-4"
-               data-infinite="true"
-               data-autoplay="true"
-               data-speed="5000"
-               data-fade="true"
-               data-nav-for="#testimonialsNavPagination">
-            <div class="js-slide">
+          <div class="js-slick-carousel mb-4">
+            <div>
               <!-- Testimonials -->
               <div class="w-md-80 w-lg-60 text-center mx-auto">
                 <blockquote class="h5 text-white font-weight-normal mb-4">The template is really nice and offers quite a large set of options. Thank you!</blockquote>
                 <h1 class="h6 text-white-70">Maria Muszynska, Google</h1>
               </div>
               <!-- End Testimonials -->
-            </div>
-
-            <div class="js-slide">
-              <!-- Testimonials -->
-              <div class="w-md-80 w-lg-60 text-center mx-auto">
-                <blockquote class="h5 text-white font-weight-normal mb-4">It's beautiful and the coding is done quickly and seamlessly. Keep it up!</blockquote>
-                <h2 class="h6 text-white-70">James Austin, Slack</h2>
-              </div>
-              <!-- End Testimonials -->
-            </div>
-
-            <div class="js-slide">
-              <!-- Testimonials -->
-              <div class="w-md-80 w-lg-60 text-center mx-auto">
-                <blockquote class="h5 text-white font-weight-normal mb-4">I love Front! I love the ease of use, I love the fact that I have total creative freedom...</blockquote>
-                <h3 class="h6 text-white-70">Charlotte Moore, Amazon</h3>
-              </div>
-              <!-- End Testimonials -->
-            </div>
+            </div>           
           </div>
           <!-- End Testimonials Carousel Main -->
-
-          <!-- Testimonials Carousel Pagination -->
-          <div id="testimonialsNavPagination" class="js-slick-carousel u-slick u-slick--transform-off u-slick--pagination-modern mx-auto"
-               data-infinite="true"
-               data-autoplay="true"
-               data-speed="5000"
-               data-center-mode="true"
-               data-slides-show="3"
-               data-is-thumbs="true"
-               data-focus-on-select="true"
-               data-nav-for="#testimonialsNavMain">
-            <div class="js-slide">
-              <div class="u-avatar mx-auto">
-                <img class="img-fluid rounded-circle" src="../../assets/img/100x100/img1.jpg" alt="Image Description">
-              </div>
-            </div>
-
-            <div class="js-slide">
-              <div class="u-avatar mx-auto">
-                <img class="img-fluid rounded-circle" src="../../assets/img/100x100/img3.jpg" alt="Image Description">
-              </div>
-            </div>
-
-            <div class="js-slide">
-              <div class="u-avatar mx-auto">
-                <img class="img-fluid rounded-circle" src="../../assets/img/100x100/img2.jpg" alt="Image Description">
-              </div>
-            </div>
-          </div>
-          <!-- End Testimonials Carousel Pagination -->
-
-          <!-- Clients -->
-          <div class="position-absolute right-0 bottom-0 left-0 text-center p-5">
-            <h4 class="h6 text-white-70 mb-3">Front partners</h4>
-            <div class="d-flex justify-content-center">
-              <div class="mx-4">
-                <img class="u-clients" src="../../assets/svg/clients-logo/slack-white.svg" alt="Image Description">
-              </div>
-              <div class="mx-4">
-                <img class="u-clients" src="../../assets/svg/clients-logo/google-white.svg" alt="Image Description">
-              </div>
-              <div class="mx-4">
-                <img class="u-clients" src="../../assets/svg/clients-logo/spotify-white.svg" alt="Image Description">
-              </div>
-            </div>
-          </div>
-          <!-- End Clients -->
         </div>
       </div>
 
       <div class="container">
         <div class="row no-gutters">
-          <div class="col-md-8 col-lg-7 col-xl-6 offset-md-2 offset-lg-2 offset-xl-3 space-3 space-top-2 space-lg-0">
+          <div class="col-md-8 col-lg-7 col-xl-6 offset-md-2 offset-lg-2 offset-xl-3">
             <!-- Form -->
             <h1 class="h3 text-primary font-weight-normal mb-0">Welcome <span class="font-weight-semi-bold">back</span></h1>
             <p>Login to manage your account.</p>
@@ -129,8 +59,17 @@
                 </label>
                 {{ form.password }}
               </div>
-            <button type='submit' class='btn btn-default btn-primary transition-3d-hover'>Submit</button>
-            </form>
+
+              <div class="row align-items-center mb-5">
+
+          <div class="col-6">
+              <span class="small text-muted">Don't have an account?</span>
+              <a class="small" href="{% url 'register' %}">Signup</a>
+            </div>  
+            <div class="col-6 text-right">
+              <button type='submit' class='btn btn-default btn-primary transition-3d-hover'>Submit</button>
+          </div></div>
+        </form>
             <!-- End Form -->
             <br>
             <p>- OR Login Using -</p>
@@ -139,7 +78,7 @@
             <button type="button" class="btn btn-twitter mb-1">Twitter</button>
           </div>
         </div>
-      </div>
+    
     </div>
     <!-- End Form -->
   

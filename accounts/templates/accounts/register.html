@@ -113,15 +113,15 @@
     <div class="container js-scrollbar" style="height:600px;">
       <div class="row no-gutters">
         <div class="col-md-8 col-lg-7 col-xl-6 offset-md-2 offset-lg-2 offset-xl-3 space-1 space-top-lg-1 space-top-md-3">
-          <!-- Form -->
-          <form method='POST' class="js-validate mt-5"> {% csrf_token %}
+          
             <!-- Title -->
             <div class="mb-7">
               <h1 class="h3 text-primary font-weight-normal mb-0">Welcome to <span class="font-weight-semi-bold">VRIKSH</span></h1>
               <p>Fill out the form to get started.</p>
             </div>
-            <!-- End Title -->
-            
+            <!-- End Title --> 
+<!-- Form -->
+<form method='POST' class="js-validate mt-5"> {% csrf_token %}
       <!-- Form Group -->
       <div class="js-form-message form-group">
           <label class="form-label" for="signinSrPassword">Full Name</label>
@@ -177,15 +177,27 @@
           <div class="col-7 col-sm-6 text-right">
             <button type="submit" class="btn btn-primary transition-3d-hover">Get Started</button>
           </div>
+          
         </div>
         <!-- End Button -->
       </form>
       <!-- End Form -->
+      <p>- OR Login Using -</p>
+      {% load socialaccount %}
+<a href="{% provider_login_url "facebook" method="oauth2" %}?next={{request.path}}">
+            <button type="button" class="btn btn-facebook mb-1">Facebook</button></a>
+            {% load socialaccount %}
+
+            <a href="{% provider_login_url "google" %}">
+
+            <button type="button" class="btn btn-google mb-1">Google</button></a>
+            <button type="button" class="btn btn-twitter mb-1">Twitter</button>
     </div>
   </div>
     </div>
   </div>
 <!-- End Form -->
+
 </div>
 {% endblock %}
 

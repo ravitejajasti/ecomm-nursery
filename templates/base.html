@@ -160,9 +160,9 @@
                data-unfold-hide-on-scroll="true"
                data-unfold-animation-in="slideInUp"
                data-unfold-animation-out="fadeOut">
-               <img class="dropdown-item-icon" src="{% static 'vendor/flag-icon-css/flags/4x3/us.svg' %}" alt="SVG">
+               <img class="dropdown-item-icon" src="{% static 'img/hyd.png' %}" alt="SVG">
               <span class="d-inline-block d-sm-none">US</span>
-              <span class="d-none d-sm-inline-block">United States</span>
+              <span class="d-none d-sm-inline-block">Hyderabad</span>
             </a>
 
             <div id="languageDropdown" class="dropdown-menu dropdown-unfold" aria-labelledby="languageDropdownInvoker">
@@ -238,17 +238,28 @@
             <li class="list-inline-item">
               <!-- Account Sidebar Toggle Button -->
               {% if user.is_authenticated %}
-              <a class="btn btn-xs btn-text-secondary u-sidebar--account__toggle-bg ml-1" href="/accounts">
-                <span class="position-relative">
+               <a id="sidebarNavToggler" class="btn btn-xs btn-text-secondary u-sidebar--account__toggle-bg ml-1" href="javascript:;" role="button"
+               aria-controls="sidebarContent"
+               aria-haspopup="true"
+               aria-expanded="false"
+               data-unfold-event="click"
+               data-unfold-hide-on-scroll="false"
+               data-unfold-target="#sidebarContent"
+               data-unfold-type="css-animation"
+               data-unfold-animation-in="fadeInRight"
+               data-unfold-animation-out="fadeOutRight"
+               data-unfold-duration="500">
+              <span class="position-relative">
                   <span class="u-sidebar--account__toggle-text">{{ user.full_name }}</span>
+                  {% if user.image %}
                   <img class="u-sidebar--account__toggle-img" src="{{user.image.url}}" alt="Image Description">
-                  <span class="badge badge-sm badge-success badge-pos rounded-circle">3</span>
+                  {% endif %}
+                  <!-- <span class="badge badge-sm badge-success badge-pos rounded-circle">3</span> -->
                 </span>
               </a>
               {% else %}
-              <a class="btn btn-xs btn-text-secondary u-sidebar--account__toggle-bg ml-1" href="/login">
-
-               <span class="fas fa-user-circle btn-icon__inner font-size-1"></span>
+              <a id="sidebarNavToggler" class="btn btn-xs btn-icon btn-text-secondary" href="{% url 'login' %}" role="button">
+                <span class="fas fa-user-circle btn-icon__inner font-size-1"></span>
               </a>
               {% endif %}
               <!-- End Account Sidebar Toggle Button -->
@@ -596,7 +607,7 @@
                   data-animation-out="fadeOut"
                   data-max-width="440px"
                   data-position="right">
-                <a id="shopMegaMenu" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false">Shop</a>
+                <a id="shopMegaMenu" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false">Goodies</a>
 
                 <!-- Shop - Mega Menu -->
                 <div class="hs-mega-menu u-header__sub-menu u-header__mega-menu-position-right-fix--md" aria-labelledby="shopMegaMenu">
@@ -639,79 +650,6 @@
                 <!-- End Shop - Mega Menu -->
               </li>
               <!-- End Shop -->
-
-              <!-- Demos -->
-              <li class="nav-item hs-has-mega-menu u-header__nav-item"
-                  data-event="hover"
-                  data-animation-in="slideInUp"
-                  data-animation-out="fadeOut"
-                  data-max-width="600px"
-                  data-position="right">
-                <a id="demosMegaMenu" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false">Demos</a>
-
-                <!-- Demos - Mega Menu -->
-                <div class="hs-mega-menu w-100 u-header__sub-menu" aria-labelledby="demosMegaMenu">
-                  <div class="row no-gutters">
-                    <div class="col-md-6">
-                      <!-- Promo Item -->
-                      <div class="u-header__promo-item">
-                        <a class="u-header__promo-link" href="../house//">
-                          <div class="media align-items-center">
-                            <img class="js-svg-injector u-header__promo-icon" src="{% static 'svg/icons/icon-13.svg' %}" alt="SVG">
-                            <div class="media-body">
-                              <span class="u-header__promo-title">House</span>
-                              <small class="u-header__promo-text">Real estate demo.</small>
-                            </div>
-                          </div>
-                        </a>
-                      </div>
-                      <!-- End Promo Item -->
-
-                      <!-- Promo Item -->
-                      <div class="u-header__promo-item">
-                        <a class="u-header__promo-link" href="../job//">
-                          <div class="media align-items-center">
-                            <img class="js-svg-injector u-header__promo-icon" src="{% static 'svg/icons/icon-19.svg' %}" alt="SVG">
-                            <div class="media-body">
-                              <span class="u-header__promo-title">Job</span>
-                              <small class="u-header__promo-text">Job vacancy demo.</small>
-                            </div>
-                          </div>
-                        </a>
-                      </div>
-                      <!-- End Promo Item -->
-
-                      <!-- Promo Item -->
-                      <div class="u-header__promo-item">
-                        <a class="u-header__promo-link" href="../crypto//">
-                          <div class="media align-items-center">
-                            <img class="js-svg-injector u-header__promo-icon" src="{% static 'svg/icons/icon-5.svg' %}" alt="SVG">
-                            <div class="media-body">
-                              <span class="u-header__promo-title">Crypto landing</span>
-                              <small class="u-header__promo-text">Cryptocurrency demo.</small>
-                            </div>
-                          </div>
-                        </a>
-                      </div>
-                      <!-- End Promo Item -->
-                    </div>
-
-                    <!-- Promo -->
-                    <div class="col-md-6 u-header__promo">
-                      <a class="d-block u-header__promo-inner" href="#">
-                        <div class="position-relative">
-                          <img class="img-fluid rounded mb-3" src="../../assets/img/380x227/img6.jpg" alt="Image Description">
-                          <span class="badge badge-success badge-pill badge-pos shadow-sm mt-3">New</span>
-                        </div>
-                        <span class="text-secondary font-size-1">Front makes you look at things from a different perspectives.</span>
-                      </a>
-                    </div>
-                    <!-- End Promo -->
-                  </div>
-                </div>
-                <!-- End Demos - Mega Menu -->
-              </li>
-              <!-- End Demos -->
 
               <!-- Docs -->
               <li class="nav-item hs-has-mega-menu u-header__nav-item"
@@ -800,8 +738,11 @@
   <!-- ========== END HEADER ========== -->
    <!-- ========== MAIN CONTENT ========== -->
   <main id="content" role="main">
+    <div class="space-2 space-top-md-4 space-bottom-md-3 space-top-lg-3">
+
 {% block content %}
 {% endblock %}
+</div>
 </main>
   <!-- ========== END MAIN CONTENT ========== -->
 
@@ -881,7 +822,7 @@
       <div class="container text-center space-1">
         <!-- Logo -->
         <a class="d-inline-flex align-items-center mb-2" href="/" aria-label="Front">
-          <img class="u-header__navbar-brand-default" src="{% static 'img/vriksh.svg' %}" alt="Logo">
+          <svg class="u-header__navbar-brand-default" src="{% static 'img/vriksh.svg' %}" alt="Logo"></svg>
           <span class="u-header__navbar-brand-text">VRIKSH</span>
         </a>
         <!-- End Logo -->
@@ -892,7 +833,180 @@
   <!-- ========== END FOOTER ========== -->
 
   <!-- ========== SECONDARY CONTENTS ========== -->
+{% if user.is_authenticated %}
+ <!-- Account Sidebar Navigation -->
+ <aside id="sidebarContent" class="u-sidebar" aria-labelledby="sidebarNavToggler">
+  <div class="u-sidebar__scroller">
+    <div class="u-sidebar__container">
+      <div class="u-sidebar--account__footer-offset">
+        <!-- Toggle Button -->
+        <div class="d-flex justify-content-between align-items-center pt-4 px-7">
+          <h3 class="h6 mb-0">My Account</h3>
 
+          <button type="button" class="close ml-auto"
+                  aria-controls="sidebarContent"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  data-unfold-event="click"
+                  data-unfold-hide-on-scroll="false"
+                  data-unfold-target="#sidebarContent"
+                  data-unfold-type="css-animation"
+                  data-unfold-animation-in="fadeInRight"
+                  data-unfold-animation-out="fadeOutRight"
+                  data-unfold-duration="500">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <!-- End Toggle Button -->
+
+        <!-- Content -->
+        <div class="js-scrollbar u-sidebar__body">
+          <!-- Holder Info -->
+          <header class="d-flex align-items-center u-sidebar--account__holder mt-3">
+            <div class="position-relative">
+                {% if user.image %}
+                <img class="u-sidebar--account__holder-img" src="{{user.image.url}}" alt="Image Description">
+                {% endif %}
+              <span class="badge badge-xs badge-outline-success badge-pos rounded-circle"></span>
+            </div>
+            <div class="ml-3">
+              <span class="font-weight-semi-bold">{{ user.full_name }}<span class="badge badge-success ml-1">Pro</span></span>
+              <span class="u-sidebar--account__holder-text">Lead Support Adviser</span>
+            </div>
+
+            <!-- Settings -->
+            <div class="btn-group position-relative ml-auto mb-auto">
+              <a id="sidebar-account-settings-invoker" class="btn btn-xs btn-icon btn-text-secondary rounded" href="javascript:;" role="button"
+                      aria-controls="sidebar-account-settings"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                      data-toggle="dropdown"
+                      data-unfold-event="click"
+                      data-unfold-target="#sidebar-account-settings"
+                      data-unfold-type="css-animation"
+                      data-unfold-duration="300"
+                      data-unfold-delay="300"
+                      data-unfold-animation-in="slideInUp"
+                      data-unfold-animation-out="fadeOut">
+                <span class="fas fa-ellipsis-v btn-icon__inner"></span>
+              </a>
+
+              <div id="sidebar-account-settings" class="dropdown-menu dropdown-unfold dropdown-menu-right" aria-labelledby="sidebar-account-settings-invoker">
+                <a class="dropdown-item" href="#">Settings</a>
+                <a class="dropdown-item" href="#">History</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Sign Out</a>
+              </div>
+            </div>
+            <!-- End Settings -->
+          </header>
+          <!-- End Holder Info -->
+
+          <div class="u-sidebar__content--account">
+            <!-- List Links -->
+            <ul class="list-unstyled u-sidebar--account__list">
+              <li class="u-sidebar--account__list-item">
+                <a class="u-sidebar--account__list-link" href="dashboard.html">
+                  <span class="fas fa-home u-sidebar--account__list-icon mr-2"></span>
+                  Dashboard
+                </a>
+              </li>
+              <li class="u-sidebar--account__list-item">
+                <a class="u-sidebar--account__list-link" href="profile.html">
+                  <span class="fas fa-user-circle u-sidebar--account__list-icon mr-2"></span>
+                  Profile
+                </a>
+              </li>
+              <li class="u-sidebar--account__list-item">
+                <a class="u-sidebar--account__list-link" href="my-tasks.html">
+                  <span class="fas fa-tasks u-sidebar--account__list-icon mr-2"></span>
+                  My tasks
+                </a>
+              </li>
+              <li class="u-sidebar--account__list-item">
+                <a class="u-sidebar--account__list-link" href="projects.html">
+                  <span class="fas fa-layer-group u-sidebar--account__list-icon mr-2"></span>
+                  Projects <span class="badge badge-danger float-right mt-1">3</span>
+                </a>
+              </li>
+              <li class="u-sidebar--account__list-item">
+                <a class="u-sidebar--account__list-link" href="members.html">
+                  <span class="fas fa-users u-sidebar--account__list-icon mr-2"></span>
+                  Members
+                </a>
+              </li>
+              <li class="u-sidebar--account__list-item">
+                <a class="u-sidebar--account__list-link" href="activity.html">
+                  <span class="fas fa-exchange-alt u-sidebar--account__list-icon mr-2"></span>
+                  Activity
+                </a>
+              </li>
+              <li class="u-sidebar--account__list-item">
+                <a class="u-sidebar--account__list-link" href="payment-methods.html">
+                  <span class="fas fa-wallet u-sidebar--account__list-icon mr-2"></span>
+                  Payment methods
+                </a>
+              </li>
+              <li class="u-sidebar--account__list-item">
+                <a class="u-sidebar--account__list-link" href="plans.html">
+                  <span class="fas fa-cubes u-sidebar--account__list-icon mr-2"></span>
+                  Plans
+                </a>
+              </li>
+            </ul>
+            <!-- End List Links -->
+
+            <div class="u-sidebar--account__list-divider"></div>
+
+            <!-- List Links -->
+            <ul class="list-unstyled u-sidebar--account__list">
+              <li class="u-sidebar--account__list-item">
+                <a class="u-sidebar--account__list-link" href="invite-friends.html">
+                  <span class="fas fa-user-plus u-sidebar--account__list-icon mr-2"></span>
+                  Invite friends
+                </a>
+              </li>
+              <li class="u-sidebar--account__list-item">
+                <a class="u-sidebar--account__list-link" href="api-token.html">
+                  <span class="fas fa-sign-out-alt u-sidebar--account__list-icon mr-2"></span>
+                  Logout
+                </a>
+              </li>
+            </ul>
+            <!-- End List Links -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer id="SVGwaveWithDots" class="svg-preloader u-sidebar__footer u-sidebar__footer--account">
+        <ul class="list-inline mb-0">
+          <li class="list-inline-item pr-3">
+            <a class="u-sidebar__footer--account__text" href="../pages/privacy.html">Privacy</a>
+          </li>
+          <li class="list-inline-item pr-3">
+            <a class="u-sidebar__footer--account__text" href="../pages/terms.html">Terms</a>
+          </li>
+          <li class="list-inline-item">
+            <a class="u-sidebar__footer--account__text" href="../pages/help.html">
+              <i class="fas fa-info-circle"></i>
+            </a>
+          </li>
+        </ul>
+
+        <!-- SVG Background Shape -->
+        <div class="position-absolute right-0 bottom-0 left-0">
+          <svg class="js-svg-injector" src="https://vriksh-static.s3.amazonaws.com/static/svg/components/wave-bottom-with-dots.svg" alt="Image Description"
+                 data-parent="#SVGwaveWithDots"></svg>
+        </div>
+        <!-- End SVG Background Shape -->
+      </footer>
+      <!-- End Footer -->
+    </div>
+  </div>
+</aside>
+<!-- End Account Sidebar Navigation -->
+{% endif %}
   <!-- Cart Navigation -->
 <aside id="sidebarcartContent" class="u-sidebar" aria-labelledby="sidebarcartToggler">
     <div class="u-sidebar__scroller">
