@@ -14,6 +14,8 @@
 <script src="{% static 'vendor/fancybox/jquery.fancybox.min.js' %}"></script>
 <script src="{% static 'vendor/typed.js/lib/typed.min.js' %}"></script>
 <script src="{% static 'vendor/slick-carousel/slick/slick.js' %}"></script>
+<script src="{% static 'vendor/bootstrap-select/dist/js/bootstrap-select.min.js' %}"></script>
+
 
 <!-- JS VRIKSH -->
 <script src="{% static 'js/hs.core.js' %}"></script>
@@ -68,6 +70,18 @@
     // initialization of forms
     $.HSCore.components.HSFocusState.init();
 
+    // initialization of range datepicker
+    $.HSCore.components.HSRangeDatepicker.init('.js-range-datepicker');
+
+    // initialization of datatables
+    $.HSCore.components.HSDatatables.init('.js-datatable');
+
+    // initialization of select picker
+    $.HSCore.components.HSSelectPicker.init('.js-select');
+
+    // initialization of forms
+    $.HSCore.components.HSRangeSlider.init('.js-range-slider');
+
     // initialization of form validation
     $.HSCore.components.HSValidation.init('.js-validate', {
       rules: {
@@ -79,23 +93,24 @@
 
     // initialization of show animations
     $.HSCore.components.HSShowAnimation.init('.js-animation-link');
-// initialization of fancybox
-$.HSCore.components.HSFancyBox.init('.js-fancybox');
+    // initialization of fancybox
+    $.HSCore.components.HSFancyBox.init('.js-fancybox');
 
-// initialization of text animation (typing)
-var typed = new Typed(".u-text-animation.u-text-animation--typing", {
-strings: ["in all varieties.", "in all colors.", "at discounted prices"],
-typeSpeed: 60,
-loop: true,
-backSpeed: 25,
-backDelay: 1500
-});
+    // initialization of text animation (typing)
+    var typed = new Typed(".u-text-animation.u-text-animation--typing", {
+    strings: ["in all varieties.", "in all colors.", "at discounted prices"],
+    typeSpeed: 60,
+    loop: true,
+    backSpeed: 25,
+    backDelay: 1500
+    });
 
     // initialization of slick carousel
     $.HSCore.components.HSSlickCarousel.init('.js-slick-carousel');
 
     // initialization of go to
     $.HSCore.components.HSGoTo.init('.js-go-to');
+
   });
 </script>
 

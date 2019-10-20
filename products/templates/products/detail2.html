@@ -1,0 +1,387 @@
+{% extends "base.html" %}
+{% block title %}
+  {{object.title}}
+{% endblock %}
+
+{% block content %}
+
+  <!-- ========== MAIN ========== -->
+  <main id="content" role="main">
+    <!-- Description Section -->
+    <div class="container space-top-1 space-top-sm-2">
+      <div class="row">
+        <div class="col-lg-7 mb-7 mb-lg-0">
+          <!-- Cubeportfolio -->
+          <div class="cbp"
+               data-layout="grid"
+               data-animation="quicksand"
+               data-x-gap="32"
+               data-y-gap="32"
+               data-media-queries='[
+                {"width": 300, "cols": 1}
+              ]'>
+            <!-- Item -->
+            <div class="cbp-item">
+              <div class="cbp-caption">
+                {% if object.image %}
+                <img src='{{ object.image.url }}' class='img-fluid' />
+            {% endif %}
+              </div>
+            </div>
+            <!-- End Item -->
+            {% if object.image2 %}
+            <!-- Item -->
+            <div class="cbp-item">
+              <div class="cbp-caption">
+                <img class="rounded" src="../../assets/img/600x600/img2.jpg" alt="Image Description">
+              </div>
+            </div>
+            <!-- End Item -->
+
+            <!-- Item -->
+            <div class="cbp-item">
+              <div class="cbp-caption">
+                <img class="rounded" src="../../assets/img/600x600/img3.jpg" alt="Image Description">
+              </div>
+            </div>
+            <!-- End Item -->
+
+            <!-- Item -->
+            <div class="cbp-item">
+              <div class="cbp-caption">
+                <img class="rounded" src="../../assets/img/600x600/img4.jpg" alt="Image Description">
+              </div>
+            </div>
+            <!-- End Item -->
+            {% endif %}
+            <br />
+            <p><i>* Images are for representative purpose only.</i></p>
+          </div>
+          <!-- End Cubeportfolio -->
+        </div>
+
+        <div id="stickyBlockStartPoint" class="col-lg-5">
+          <!-- Sticky Block -->
+          <div class="js-sticky-block pl-lg-4"
+               data-parent="#stickyBlockStartPoint"
+               data-sticky-view="lg"
+               data-start-point="#stickyBlockStartPoint"
+               data-end-point="#stickyBlockEndPoint"
+               data-offset-top="80"
+               data-offset-bottom="130">
+            <div class="mb-6">
+              <h1 class="h4 text-primary font-weight-semi-bold">{{ object.title }}</h1>
+              <p class="mb-0">{{ object.timestamp|timesince }} ago
+                {{ object.description|linebreaks }}</p>
+            </div>
+            {% include 'products/snippets/update-cart.html' with product=object cart=cart %}
+            <hr class="my-5">
+
+            <!-- List -->
+            <ul class="list-unstyled mb-0">
+              <li class="media mb-1">
+                <div class="d-flex w-40 w-sm-30">
+                  <h3 class="h6">Client</h3>
+                </div>
+                <div class="media-body">
+                  <small class="text-muted">
+                    Htmlstream
+                  </small>
+                </div>
+              </li>
+
+              <li class="media mb-1">
+                <div class="d-flex w-40 w-sm-30">
+                  <h4 class="h6">Designers</h4>
+                </div>
+                <div class="media-body">
+                  <small class="text-muted">
+                    Maria Muszynska,
+                  </small>
+                  <small class="text-muted">
+                    Jack Wayley
+                  </small>
+                </div>
+              </li>
+
+              <li class="media mb-1">
+                <div class="d-flex w-40 w-sm-30">
+                  <h4 class="h6">Partners</h4>
+                </div>
+                <div class="media-body">
+                  <small class="text-muted">
+                    Pixeel
+                  </small>
+                </div>
+              </li>
+
+              <li class="media">
+                <div class="d-flex w-40 w-sm-30">
+                  <h4 class="h6">Awards</h4>
+                </div>
+                <div class="media-body">
+                  <small class="d-block text-muted mb-1">
+                    FWA Site of the Day
+                  </small>
+                  <small class="d-block text-muted mb-1">
+                    Awwwards Site of the Day
+                  </small>
+                  <small class="d-block text-muted mb-1">
+                    CSSAwards Site of the Day
+                  </small>
+                  <small class="d-block text-muted">
+                    Bronze ADCN Lamp (Digital Craft)
+                  </small>
+                </div>
+              </li>
+            </ul>
+            <!-- End List -->
+
+            <hr class="my-5">
+
+            <div class="media">
+              <div class="d-flex w-40 w-sm-30">
+                <h4 class="h6">Share</h4>
+              </div>
+              <div class="media-body">
+                <!-- Social Networks -->
+                <ul class="list-inline mb-0">
+                  <li class="list-inline-item">
+                    <a class="btn btn-sm btn-icon btn-soft-secondary btn-bg-transparent" href="#">
+                      <span class="fab fa-facebook-f btn-icon__inner"></span>
+                    </a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a class="btn btn-sm btn-icon btn-soft-secondary btn-bg-transparent" href="#">
+                      <span class="fab fa-google btn-icon__inner"></span>
+                    </a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a class="btn btn-sm btn-icon btn-soft-secondary btn-bg-transparent" href="#">
+                      <span class="fab fa-twitter btn-icon__inner"></span>
+                    </a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a class="btn btn-sm btn-icon btn-soft-secondary btn-bg-transparent" href="#">
+                      <span class="fab fa-github btn-icon__inner"></span>
+                    </a>
+                  </li>
+                </ul>
+                <!-- End Social Networks -->
+              </div>
+            </div>
+          </div>
+          <!-- End Sticky Block -->
+        </div>
+      </div>
+    </div>
+    <!-- End Description Section -->
+
+    <!-- Sticky Block End Point -->
+    <div id="stickyBlockEndPoint"></div>
+
+    <hr class="my-0">
+
+    <!-- Portfolio Section -->
+    <div class="container space-top-2 space-top-md-3 space-bottom-1">
+      <!-- Title -->
+      <div class="w-md-80 w-lg-50 text-center mx-md-auto mb-9">
+        <span class="u-label u-label--sm u-label--success mb-2">Portfolio</span>
+        <h2 class="text-primary">Our <strong class="font-weight-semi-bold">Branding</strong> works</h2>
+        <p>Experience a level of our quality in both design &amp; customization works.</p>
+      </div>
+      <!-- End Title -->
+
+      <!-- Cubeportfolio -->
+      <div class="u-cubeportfolio">
+        <!-- Content -->
+        <div class="cbp"
+             data-layout="grid"
+             data-controls="#filterControls"
+             data-animation="quicksand"
+             data-x-gap="32"
+             data-y-gap="32"
+             data-media-queries='[
+              {"width": 1500, "cols": 4},
+              {"width": 1100, "cols": 4},
+              {"width": 800, "cols": 3},
+              {"width": 480, "cols": 2},
+              {"width": 300, "cols": 1}
+            ]'>
+          <!-- Item -->
+          <div class="cbp-item rounded graphic">
+            <a class="cbp-caption" href="single-page-simple.html">
+              <div class="cbp-caption-defaultWrap">
+                <img src="../../assets/img/380x360/img1.jpg" alt="Image Description">
+              </div>
+              <div class="cbp-caption-activeWrap bg-primary">
+                <div class="cbp-l-caption-alignCenter">
+                  <div class="cbp-l-caption-body">
+                    <h4 class="h6 text-white mb-0">Remind Me More</h4>
+                    <p class="small text-white-70 mb-0">
+                      by Tiberiu Neamu
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <!-- End Item -->
+
+          <!-- Item -->
+          <div class="cbp-item rounded branding">
+            <a class="cbp-caption" href="single-page-simple.html">
+              <div class="cbp-caption-defaultWrap">
+                <img src="../../assets/img/380x360/img2.jpg" alt="Image Description">
+              </div>
+              <div class="cbp-caption-activeWrap bg-primary">
+                <div class="cbp-l-caption-alignCenter">
+                  <div class="cbp-l-caption-body">
+                    <h4 class="h6 text-white mb-0">Workout Buddy</h4>
+                    <p class="small text-white-70 mb-0">
+                      by Tiberiu Neamu
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <!-- End Item -->
+
+          <!-- Item -->
+          <div class="cbp-item rounded abstract illustration">
+            <a class="cbp-caption" href="single-page-simple.html">
+              <div class="cbp-caption-defaultWrap">
+                <img src="../../assets/img/380x360/img3.jpg" alt="Image Description">
+              </div>
+              <div class="cbp-caption-activeWrap bg-primary">
+                <div class="cbp-l-caption-alignCenter">
+                  <div class="cbp-l-caption-body">
+                    <h4 class="h6 text-white mb-0">Tiger</h4>
+                    <p class="small text-white-70 mb-0">
+                      by Cosmin Capitanu
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <!-- End Item -->
+
+          <!-- Item -->
+          <div class="cbp-item rounded abstract illustration">
+            <a class="cbp-caption" href="single-page-simple.html">
+              <div class="cbp-caption-defaultWrap">
+                <img src="../../assets/img/380x360/img5.jpg" alt="Image Description">
+              </div>
+              <div class="cbp-caption-activeWrap bg-primary">
+                <div class="cbp-l-caption-alignCenter">
+                  <div class="cbp-l-caption-body">
+                    <h4 class="h6 text-white mb-0">Tiger</h4>
+                    <p class="small text-white-70 mb-0">
+                      by Cosmin Capitanu
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <!-- End Item -->
+
+          <!-- Item -->
+          <div class="cbp-item rounded graphic illustration">
+            <a class="cbp-caption" href="single-page-simple.html">
+              <div class="cbp-caption-defaultWrap">
+                <img src="../../assets/img/380x360/img4.jpg" alt="Image Description">
+              </div>
+              <div class="cbp-caption-activeWrap bg-primary">
+                <div class="cbp-l-caption-alignCenter">
+                  <div class="cbp-l-caption-body">
+                    <h4 class="h6 text-white mb-0">Tiger</h4>
+                    <p class="small text-white-70 mb-0">
+                      by Cosmin Capitanu
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <!-- End Item -->
+
+          <!-- Item -->
+          <div class="cbp-item rounded graphic illustration">
+            <a class="cbp-caption" href="single-page-simple.html">
+              <div class="cbp-caption-defaultWrap">
+                <img src="../../assets/img/380x360/img6.jpg" alt="Image Description">
+              </div>
+              <div class="cbp-caption-activeWrap bg-primary">
+                <div class="cbp-l-caption-alignCenter">
+                  <div class="cbp-l-caption-body">
+                    <h4 class="h6 text-white mb-0">Tiger</h4>
+                    <p class="small text-white-70 mb-0">
+                      by Cosmin Capitanu
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <!-- End Item -->
+
+          <!-- Item -->
+          <div class="cbp-item rounded branding">
+            <a class="cbp-caption" href="single-page-simple.html">
+              <div class="cbp-caption-defaultWrap">
+                <img src="../../assets/img/380x360/img18.jpg" alt="Image Description">
+              </div>
+              <div class="cbp-caption-activeWrap bg-primary">
+                <div class="cbp-l-caption-alignCenter">
+                  <div class="cbp-l-caption-body">
+                    <h4 class="h6 text-white mb-0">Workout Buddy</h4>
+                    <p class="small text-white-70 mb-0">
+                      by Tiberiu Neamu
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <!-- End Item -->
+
+          <!-- Item -->
+          <div class="cbp-item rounded abstract illustration">
+            <a class="cbp-caption" href="single-page-simple.html">
+              <div class="cbp-caption-defaultWrap">
+                <img src="../../assets/img/380x360/img12.jpg" alt="Image Description">
+              </div>
+              <div class="cbp-caption-activeWrap bg-primary">
+                <div class="cbp-l-caption-alignCenter">
+                  <div class="cbp-l-caption-body">
+                    <h4 class="h6 text-white mb-0">Tiger</h4>
+                    <p class="small text-white-70 mb-0">
+                      by Cosmin Capitanu
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <!-- End Item -->
+        </div>
+        <!-- End Content -->
+      </div>
+      <!-- End Cubeportfolio -->
+    </div>
+    <!-- End Portfolio Section -->
+  </main>
+  <!-- ========== END MAIN ========== -->
+
+
+    <div class='row'>
+            <div class='col-12 col-md-6'>
+
+        </div>
+</div>
+
+
+{% endblock %}

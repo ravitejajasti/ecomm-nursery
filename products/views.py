@@ -9,7 +9,8 @@ from analytics.mixins import ObjectViewedMixin
 
 from carts.models import Cart
 
-from .models import Product, ProductFile
+from .models import Product, ProductFile, Comment
+
 
 
 class ProductFeaturedListView(ListView):
@@ -31,6 +32,7 @@ class ProductFeaturedDetailView(ObjectViewedMixin, DetailView):
 
 class UserProductHistoryView(LoginRequiredMixin, ListView):
     template_name = "products/user-history.html"
+
     def get_context_data(self, *args, **kwargs):
         context = super(UserProductHistoryView, self).get_context_data(*args, **kwargs)
         cart_obj, new_obj = Cart.objects.new_or_get(self.request)
@@ -42,7 +44,19 @@ class UserProductHistoryView(LoginRequiredMixin, ListView):
         views = request.user.objectviewed_set.by_model(Product, model_queryset=False)
         return views
 
+class UserProductHistoryView2(LoginRequiredMixin, ListView):
+    template_name = "accounts/home.html"
 
+    def get_context_data(self, *args, **kwargs):
+        context = super(UserProductHistoryView2, self).get_context_data(*args, **kwargs)
+        cart_obj, new_obj = Cart.objects.new_or_get(self.request)
+        context['cart'] = cart_obj
+        return context
+
+    def get_queryset(self, *args, **kwargs):
+        request = self.request
+        views = request.user.objectviewed_set.by_model(Product, model_queryset=False)
+        return views
 
 class ProductListView(ListView):
     template_name = "products/list.html"
@@ -153,22 +167,22 @@ class ProductDownloadView(View):
         #return redirect(download_obj.get_default_url())
 
 
-
-
 class ProductDetailView(ObjectViewedMixin, DetailView):
     #queryset = Product.objects.all()
     template_name = "products/detail.html"
-
+    
     def get_context_data(self, *args, **kwargs):
         context = super(ProductDetailView, self).get_context_data(*args, **kwargs)
         print(context)
         # context['abc'] = 123
         return context
+      
 
     def get_object(self, *args, **kwargs):
         request = self.request
         pk = self.kwargs.get('pk')
         instance = Product.objects.get_by_id(pk)
+
         if instance is None:
             raise Http404("Product doesn't exist")
         return instance
@@ -191,6 +205,7 @@ def product_detail_view(request, pk=None, *args, **kwargs):
     #     print("huh?")
 
     instance = Product.objects.get_by_id(pk)
+                
     if instance is None:
         raise Http404("Product doesn't exist")
     #print(instance)
@@ -206,3 +221,26 @@ def product_detail_view(request, pk=None, *args, **kwargs):
         'object': instance
     }
     return render(request, "products/detail.html", context)
+
+
+# Testing Code - Ravi
+
+# comments = Comment.objects.filter(post=post).order_by('-id')
+#     if request.method == 'POST':
+#         comment_form = CommentForm(request.POST or None)
+#         if comment_form.is_valid():
+#             content = request.POST.get('content')
+#             comment = Comment.objects.create(post=post, user=request.user, content=content)
+#             comment.save()
+#             return HttpResponseRedirect(post.get_absolute_url())
+#         else:
+#             comment_form=CommentForm()
+
+
+class CommentView(View):
+    queryset = Comment
+    template_name = "products/comments-loader.html"
+
+    def get_queryset(self, *args, **kwargs):
+        request = self.request
+        return Product.Comment.objects.all()

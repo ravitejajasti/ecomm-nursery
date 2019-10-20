@@ -4,8 +4,9 @@
     {% if product in cart.products.all %}
         <div class='btn-group'> <a class='btn btn-link' href='/cart/'>In cart</a> <button type='submit' class='btn btn-link'>Remove?</button></div>
     {% else %}
-    <br />
-    <button type='submit'  class='btn btn-default btn-primary transition-3d-hover'>Add to cart</button>
+    <button type='submit'  class='btn btn-default btn-primary transition-3d-hover'>
+      
+    <!-- End Quantity -->Add to cart</button>
     {% endif %}
     </span>
-</form>
+</form>  

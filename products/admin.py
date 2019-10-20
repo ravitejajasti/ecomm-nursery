@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Product, ProductFile
+from .models import Product, ProductFile, Comment
 
 
 class ProductFileInline(admin.TabularInline):
@@ -15,3 +15,4 @@ class ProductAdmin(admin.ModelAdmin):
         model = Product
 
 admin.site.register(Product, ProductAdmin)
+admin.site.register(Comment)

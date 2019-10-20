@@ -1,28 +1,211 @@
 {% extends "base.html" %}
-{% block content %}
-<div class="container space-2 space-top-md-4 space-bottom-md-2 space-top-lg-3">
-       <div class='row'>
-    <div class='col-12'>
-        <h1>Orders</h1>
-    </div>
-</div>
-<div class='row'>
-    <div class='col'>
-        <table class='table'>
-            <thead><th>Order Id</th><th>Status</th><th>Total</th></thead>
-            <tbody>
-                {% for object in object_list %}
-                    <tr>
-                        <td><a href='{{ object.get_absolute_url }}'>{{ object.order_id }}</a></td>
-                        <td>{{ object.get_status }}</td>
-                        <td>{{ object.total }}</td>
-                    </tr>
-                {% empty %}
-                <tr><td colspan="3"><p class='lead'>No orders yet.</td></tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-</div>
-</div>
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'vendor/flatpickr/dist/flatpickr.min.css' %}">
+<link rel="stylesheet" href="{% static 'vendor/bootstrap-select/dist/css/bootstrap-select.min.css' %}">
 {% endblock %}
+
+{% block content %}
+ 
+    <!-- Content Section -->
+    <div class="bg-light">
+      <div class="container space-2">
+            <h1>Orders</h1>
+        <div class="card">
+          <div class="card-header py-4 px-0 mx-4">
+            <!-- Activity Menu -->
+            <div class="row justify-content-sm-between align-items-sm-center">
+              <div class="col-md-5 col-lg-4 mb-2 mb-md-0">
+                <!-- Datepicker -->
+                <div id="datepickerWrapper" class="js-focus-state u-datepicker w-auto input-group input-group-sm">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <span class="fas fa-calendar"></span>
+                    </span>
+                  </div>
+                  <input type="text" class="js-range-datepicker form-control bg-white rounded-right"
+                         data-rp-wrapper="#datepickerWrapper"
+                         data-rp-type="range"
+                         data-rp-date-format="d M Y"
+                         data-rp-default-date='["05 Jul 2018", "19 Jul 2018"]'
+                         data-rp-is-disable-future-dates="true">
+                </div>
+                <!-- End Datepicker -->
+              </div>
+
+              <div class="col-md-6">
+                <div class="d-flex">
+                  <div class="mr-2">
+                    <!-- Select -->
+                    <select id="datatableEntries" class="js-select selectpicker dropdown-select" data-width="fit" data-style="btn-soft-primary btn-sm">
+                      <option value="6">6 entries</option>
+                      <option value="12" selected>12 entries</option>
+                      <option value="18">18 entries</option>
+                      <option value="24">24 entries</option>
+                    </select>
+                    <!-- End Select -->
+                  </div>
+
+                  <!-- Search -->
+                  <div class="js-focus-state input-group input-group-sm">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="searchActivities">
+                        <span class="fas fa-search"></span>
+                      </span>
+                    </div>
+                    <input id="datatableSearch" type="email" class="form-control" placeholder="Search activities" aria-label="Search activities" aria-describedby="searchActivities">
+                  </div>
+                  <!-- End Search -->
+                </div>
+              </div>
+            </div>
+            <!-- End Activity Menu -->
+          </div>
+
+          <div class="card-body p-4">
+            <!-- Activity Table -->
+            <div class="table-responsive-md u-datatable">
+              <table class="js-datatable table table-borderless u-datatable__striped u-datatable__content u-datatable__trigger mb-5"
+                     data-dt-info="#datatableInfo"
+                     data-dt-search="#datatableSearch"
+                     data-dt-entries="#datatableEntries"
+                     data-dt-page-length="12"
+                     data-dt-is-responsive="false"
+                     data-dt-is-show-paging="true"
+                     data-dt-details-invoker=".js-datatabale-details"
+                     data-dt-select-all-control="#invoiceToggleAllCheckbox"
+
+                     data-dt-pagination="datatablePagination"
+                     data-dt-pagination-classes="pagination mb-0"
+                     data-dt-pagination-items-classes="page-item"
+                     data-dt-pagination-links-classes="page-link"
+
+                     data-dt-pagination-next-classes="page-item"
+                     data-dt-pagination-next-link-classes="page-link"
+                     data-dt-pagination-next-link-markup='<span aria-hidden="true">&raquo;</span>'
+
+                     data-dt-pagination-prev-classes="page-item"
+                     data-dt-pagination-prev-link-classes="page-link"
+                     data-dt-pagination-prev-link-markup='<span aria-hidden="true">&laquo;</span>'>
+                <thead>
+                  <tr class="text-uppercase font-size-1">
+                    <th scope="col">
+                      <div class="custom-control custom-checkbox d-flex align-items-center">
+                        <input type="checkbox" class="custom-control-input" id="invoiceToggleAllCheckbox">
+                        <label class="custom-control-label" for="invoiceToggleAllCheckbox">
+                          <span class="text-hide">Checkbox</span>
+                        </label>
+                      </div>
+                    </th>
+                    <th scope="col" class="font-weight-medium">
+                      <div class="d-flex justify-content-between align-items-center">
+                        Order
+                        <div class="ml-2">
+                          <span class="fas fa-angle-up u-datatable__thead-icon"></span>
+                          <span class="fas fa-angle-down u-datatable__thead-icon"></span>
+                        </div>
+                      </div>
+                    </th>
+                    <th scope="col" class="font-weight-medium">
+                      <div class="d-flex justify-content-between align-items-center">
+                        Client
+                        <div class="ml-2">
+                          <span class="fas fa-angle-up u-datatable__thead-icon"></span>
+                          <span class="fas fa-angle-down u-datatable__thead-icon"></span>
+                        </div>
+                      </div>
+                    </th>
+                    <th scope="col" class="font-weight-medium">
+                      <div class="d-flex justify-content-between align-items-center">
+                        Amount
+                        <div class="ml-2">
+                          <span class="fas fa-angle-up u-datatable__thead-icon"></span>
+                          <span class="fas fa-angle-down u-datatable__thead-icon"></span>
+                        </div>
+                      </div>
+                    </th>
+                    <th scope="col" class="font-weight-medium">
+                      <div class="d-flex justify-content-between align-items-center">
+                        Date
+                        <div class="ml-2">
+                          <span class="fas fa-angle-up u-datatable__thead-icon"></span>
+                          <span class="fas fa-angle-down u-datatable__thead-icon"></span>
+                        </div>
+                      </div>
+                    </th>
+                    <th scope="col" class="font-weight-medium">
+                      <div class="d-flex justify-content-between align-items-center">
+                        Status
+                        <div class="ml-2">
+                          <span class="fas fa-angle-up u-datatable__thead-icon"></span>
+                          <span class="fas fa-angle-down u-datatable__thead-icon"></span>
+                        </div>
+                      </div>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="font-size-1">
+                        {% for object in object_list %}
+
+                  <tr class="js-datatabale-details">
+                    
+                    <td class="align-middle">
+                      <div class="custom-control custom-checkbox d-flex align-items-center">
+                        <input type="checkbox" class="custom-control-input" id="invoiceCheckbox02">
+                        <label class="custom-control-label" for="invoiceCheckbox02">
+                          <span class="text-hide">Checkbox</span>
+                        </label>
+                      </div>
+                    </td>
+                    <td class="align-middle text-secondary font-weight-normal u-datatable__trigger-icon"><a href="{{ object.get_absolute_url }}">{{ object.order_id }}</a></td>
+                    <td class="align-middle">
+                      <div class="media align-items-center">
+                        <span class="btn btn-sm btn-icon btn-soft-primary rounded-circle mr-2">
+                          <span class="btn-icon__inner font-weight-medium">D</span>
+                        </span>
+                        <span>Dropbox</span>
+                      </div>
+                    </td>
+                    <td class="align-middle text-primary">INR {{ object.total }}</td>
+                    <td class="align-middle text-secondary">12 May</td>
+                    <td class="align-middle text-success">{{ object.get_status }}</td>
+                  </tr>
+                  {% empty %}
+                    <tr><td colspan="3"><p class='lead'>No orders yet.</td></tr>
+                  {% endfor %}
+
+                </tbody>
+              </table>
+            </div>
+            <!-- End Activity Table -->
+
+            <!-- Pagination -->
+            <div class="d-flex align-items-center">
+              <nav id="datatablePagination" aria-label="Activity pagination"></nav>
+
+              <small id="datatableInfo" class="text-secondary ml-auto"></small>
+            </div>
+            <!-- End Pagination -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Content Section -->
+    
+{% endblock %}
+
+{% block javascript %}
+
+  <script src="{% static 'vendor/datatables/media/js/jquery.dataTables.min.js' %}"></script>
+  <script src="{% static 'vendor/flatpickr/dist/flatpickr.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap-select/dist/js/bootstrap-select.min.js' %}"></script>
+
+  <!-- JS VRIKSH -->
+  <script src="{% static 'js/components/hs.range-datepicker.js' %}"></script>
+  <script src="{% static 'js/components/hs.selectpicker.js' %}"></script>
+  <script src="{% static 'js/components/hs.datatables.js' %}"></script>
+
+{% endblock %}
+
+

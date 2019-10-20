@@ -1,9 +1,15 @@
 {% extends "base.html" %}
+{% load static %}
+{% block css %}
+  <!-- CSS Implementing Plugins -->
+  <link rel="stylesheet" type="text/css" href="{% static 'vendor/ion-rangeslider/css/ion.rangeSlider.css' %}">
+
+{% endblock %}
 {% block content %}
  <!-- Search Section -->
  
  <div class="bg-light">
-        <div class="container space-2 w-100">
+        <div class="container space-1">
             <!-- Content -->
           <div class="row mx-gutters-2">
               <form class="js-focus-state input-group input-group-lg"method="GET" action="{% url "search:query" %}">
@@ -18,7 +24,7 @@
                 <span class="input-group-text" id="searchProperty">
                   <span class="fas fa-search"></span>
                 </span>
-              </div>
+              </div> 
               <input type="text" class="form-control" name="q" id="searchPropertySr" placeholder="Search property" aria-label="Search" aria-describedby="searchProperty" value="Herbs">
             </div>
           </div>
@@ -35,7 +41,7 @@
   <!-- End Search Section -->
 
 
-    <!-- Filters Section -->
+    <!-- Topbar Filters Section -->
     <div class="container space-1">
         <!-- Title -->
         <div class="mb-4">
@@ -96,7 +102,7 @@
           </div>
         </div>
       </div>
-      <!-- End Filters Section -->
+      <!-- End Topbar Filters Section -->
   
       <!-- List of Properties Section -->
       <div class="container space-top-1 space-bottom-2">
@@ -108,7 +114,7 @@
                     <div id="shopItemsContent" class="container space-top-1 space-bottom-2">    
                     <div class='row'>
                     {% for obj in object_list %}
-                    <div class="col-sm-6 col-lg-4 mb-5">
+                    <div class="col-sm-4 col-lg-8 mb-5">
                             {% include 'products/snippets/card.html' with instance=obj %}  
                         </div>
                     {% endfor %}
@@ -149,305 +155,354 @@
           </div>
   
           
-              <!-- Sidebar Filter -->
-              <!-- Filters -->
+      <!-- Searh Filters -->
+      <div class="row">
+        <!-- Filters -->
         <div class="col-lg-3">
-            <form>
-              <div class="border-bottom pb-4 mb-4">
-                <h4 class="font-size-1 font-weight-semi-bold text-uppercase mb-3">Salary</h4>
-  
-                <!-- Range Slider -->
-                <input class="js-range-slider" type="text"
-                       data-extra-classes="u-range-slider u-range-slider-indicator u-range-slider-grid"
-                       data-type="double"
-                       data-grid="true"
-                       data-hide-from-to="false"
-                       data-prefix="$"
-                       data-min="0"
-                       data-max="10000"
-                       data-from="2500"
-                       data-to="7500"
-                       data-result-min="#rangeSliderExample3MinResult"
-                       data-result-max="#rangeSliderExample3MaxResult">
-                <div class="d-flex justify-content-between mt-4">
-                  <input type="text" class="form-control form-control-sm max-width-10" id="rangeSliderExample3MinResult">
-                  <input type="text" class="form-control form-control-sm max-width-10 mt-0" id="rangeSliderExample3MaxResult">
-                </div>
-                <!-- End Range Slider -->
+          <form>
+            <div class="border-bottom pb-4 mb-4">
+              <h4 class="h6 mb-3">Price</h4>
+      
+              <!-- Range Slider -->
+              <input class="js-range-slider" type="text"
+                     data-extra-classes="u-range-slider u-range-slider-indicator u-range-slider-grid"
+                     data-type="double"
+                     data-grid="true"
+                     data-hide-from-to="false"
+                     data-prefix="$"
+                     data-min="0"
+                     data-max="500"
+                     data-from="25"
+                     data-to="475"
+                     data-result-min="#rangeSliderExample3MinResult"
+                     data-result-max="#rangeSliderExample3MaxResult">
+              <div class="d-flex justify-content-between mt-4">
+                <input type="text" class="form-control form-control-sm max-width-10" id="rangeSliderExample3MinResult">
+                <input type="text" class="form-control form-control-sm max-width-10 mt-0" id="rangeSliderExample3MaxResult">
               </div>
-  
-              <div class="border-bottom pb-4 mb-4">
-                <h4 class="font-size-1 font-weight-semi-bold text-uppercase mb-3">Job type</h4>
-  
-                <!-- Full Time Job Type Checkbox -->
-                <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-2">
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="jobTypeFullTime" checked>
-                    <label class="custom-control-label" for="jobTypeFullTime">Full time</label>
-                  </div>
-                  <small>16273</small>
+              <!-- End Range Slider -->
+            </div>
+      
+            <div class="border-bottom pb-4 mb-4">
+              <h4 class="h6 mb-3">Gender</h4>
+      
+              <!-- Checkboxes -->
+              <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-1">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="genderMen" checked>
+                  <label class="custom-control-label text-lh-md" for="genderMen">Men</label>
                 </div>
-                <!-- End Full Time Job Type Checkbox -->
-  
-                <!-- Part Time Job Type Checkbox -->
-                <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-2">
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="jobTypePartTime">
-                    <label class="custom-control-label" for="jobTypePartTime">Part time</label>
-                  </div>
-                  <small>1768</small>
-                </div>
-                <!-- End Part Time Job Type Checkbox -->
-  
-                <!-- Contract Job Type Checkbox -->
-                <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-2">
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="jobTypeContract">
-                    <label class="custom-control-label" for="jobTypeContract">Contract</label>
-                  </div>
-                  <small>477</small>
-                </div>
-                <!-- End Contract Job Type Checkbox -->
-  
-                <!-- Freelance Job Type Checkbox -->
-                <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-2">
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="jobTypeFreelance">
-                    <label class="custom-control-label" for="jobTypeFreelance">Freelance</label>
-                  </div>
-                  <small>354</small>
-                </div>
-                <!-- End Freelance Job Type Checkbox -->
+                <small>73</small>
               </div>
-  
-              <div class="border-bottom pb-4 mb-4">
-                <h4 class="font-size-1 font-weight-semi-bold text-uppercase mb-3">Location</h4>
-  
-                <!-- Location Checkbox -->
-                <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-2">
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="location1" checked>
-                    <label class="custom-control-label" for="location1">London</label>
-                  </div>
-                  <small>16273</small>
+              <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-1">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="genderWomen" checked>
+                  <label class="custom-control-label text-lh-md" for="genderWomen">Women</label>
                 </div>
-                <!-- End Location Checkbox -->
-  
-                <!-- Location Checkbox -->
-                <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-2">
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="location2">
-                    <label class="custom-control-label" for="location2">Birmingham</label>
-                  </div>
-                  <small>1768</small>
-                </div>
-                <!-- End Location Checkbox -->
-  
-                <!-- Location Checkbox -->
-                <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-2">
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="location3">
-                    <label class="custom-control-label" for="location3">Bradford</label>
-                  </div>
-                  <small>477</small>
-                </div>
-                <!-- End Location Checkbox -->
-  
-                <!-- Location Checkbox -->
-                <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-2">
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="location4">
-                    <label class="custom-control-label" for="location4">Leicester</label>
-                  </div>
-                  <small>354</small>
-                </div>
-                <!-- End Location Checkbox -->
-  
-                <!-- Location Checkbox -->
-                <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-2">
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="location5">
-                    <label class="custom-control-label" for="location5">Liverpool</label>
-                  </div>
-                  <small>354</small>
-                </div>
-                <!-- End Location Checkbox -->
-  
-                <!-- View More - Collapse -->
-                <div class="collapse" id="collapseLocation">
-                  <!-- Location Checkbox -->
-                  <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-2">
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="location6">
-                      <label class="custom-control-label" for="location6">Manchester</label>
-                    </div>
-                    <small>239</small>
-                  </div>
-                  <!-- End Location Checkbox -->
-  
-                  <!-- Location Checkbox -->
-                  <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-2">
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="location7">
-                      <label class="custom-control-label" for="location7">Bristol</label>
-                    </div>
-                    <small>45</small>
-                  </div>
-                  <!-- End Location Checkbox -->
-  
-                  <!-- Location Checkbox -->
-                  <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-2">
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="location8">
-                      <label class="custom-control-label" for="location8">Leeds</label>
-                    </div>
-                    <small>1</small>
-                  </div>
-                  <!-- End Location Checkbox -->
-  
-                  <!-- Location Checkbox -->
-                  <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-2">
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="location9">
-                      <label class="custom-control-label" for="location9">Cambridge</label>
-                    </div>
-                    <small>71</small>
-                  </div>
-                  <!-- End Location Checkbox -->
-                </div>
-                <!-- End View More - Collapse -->
-  
-                <!-- Link -->
-                <a class="link link-collapse small font-size-1" data-toggle="collapse" href="#collapseLocation" role="button" aria-expanded="false" aria-controls="collapseLocation">
-                  <span class="link-collapse__default">View more</span>
-                  <span class="link-collapse__active">View less</span>
-                  <span class="link__icon ml-1">
-                    <span class="link__icon-inner">+</span>
-                  </span>
-                </a>
-                <!-- End Link -->
+                <small>51</small>
               </div>
-  
-              <div class="border-bottom pb-4 mb-4">
-                <h4 class="font-size-1 font-weight-semi-bold text-uppercase mb-3">Company</h4>
-  
-                <!-- Weeks Checkbox -->
-                <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-2">
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="company1" checked>
-                    <label class="custom-control-label text-lh-md" for="company1">Airbnb</label>
-                  </div>
-                  <small>66723</small>
+              <!-- End Checkboxes -->
+            </div>
+      
+            <div class="border-bottom pb-4 mb-4">
+              <h4 class="h6 mb-3">Brand</h4>
+      
+              <!-- Checkboxes -->
+              <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-1">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="brandAdidas">
+                  <label class="custom-control-label" for="brandAdidas">Adidas</label>
                 </div>
-                <!-- End Weeks Checkbox -->
-  
-                <!-- Weeks Checkbox -->
-                <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-2">
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="company2">
-                    <label class="custom-control-label text-lh-md" for="company2">Google</label>
-                  </div>
-                  <small>10768</small>
-                </div>
-                <!-- End Weeks Checkbox -->
-  
-                <!-- Weeks Checkbox -->
-                <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-2">
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="company3">
-                    <label class="custom-control-label text-lh-md" for="company3">Amazon.com</label>
-                  </div>
-                  <small>3477</small>
-                </div>
-                <!-- End Weeks Checkbox -->
-  
-                <!-- Weeks Checkbox -->
-                <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-2">
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="company4">
-                    <label class="custom-control-label text-lh-md" for="company4">Dribbble</label>
-                  </div>
-                  <small>354</small>
-                </div>
-                <!-- End Weeks Checkbox -->
-  
-                <!-- View More - Collapse -->
-                <div class="collapse" id="collapseCompany">
-                  <!-- Weeks Checkbox -->
-                  <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-2">
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="company5">
-                      <label class="custom-control-label text-lh-md" for="company5">Adobe</label>
-                    </div>
-                    <small>12</small>
-                  </div>
-                  <!-- End Weeks Checkbox -->
-  
-                  <!-- Weeks Checkbox -->
-                  <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-2">
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="company6">
-                      <label class="custom-control-label text-lh-md" for="company6">Slack</label>
-                    </div>
-                    <small>670</small>
-                  </div>
-                  <!-- End Weeks Checkbox -->
-                </div>
-                <!-- End View More - Collapse -->
-  
-                <!-- Link -->
-                <a class="link link-collapse small font-size-1" data-toggle="collapse" href="#collapseCompany" role="button" aria-expanded="false" aria-controls="collapseCompany">
-                  <span class="link-collapse__default">View more</span>
-                  <span class="link-collapse__active">View less</span>
-                  <span class="link__icon ml-1">
-                    <span class="link__icon-inner">+</span>
-                  </span>
-                </a>
-                <!-- End Link -->
+                <small>16</small>
               </div>
-  
-              <div class="border-bottom pb-4 mb-4">
-                <h4 class="font-size-1 font-weight-semi-bold text-uppercase mb-3">Category</h4>
-  
-                <!-- Category Development Checkbox -->
-                <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-2">
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="midLevel">
-                    <label class="custom-control-label" for="midLevel">Mid level</label>
-                  </div>
-                  <small>66723</small>
+              <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-1">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="brandNewBalance">
+                  <label class="custom-control-label" for="brandNewBalance">New Balance</label>
                 </div>
-                <!-- End Category Development Checkbox -->
-  
-                <!-- Category Design Checkbox -->
-                <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-2">
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="seniorLevel">
-                    <label class="custom-control-label" for="seniorLevel">Senior level</label>
-                  </div>
-                  <small>10768</small>
-                </div>
-                <!-- End Category Design Checkbox -->
-  
-                <!-- Category Marketing Checkbox -->
-                <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-2">
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="entryLevel">
-                    <label class="custom-control-label" for="entryLevel">Entry level</label>
-                  </div>
-                  <small>3477</small>
-                </div>
-                <!-- End Category Marketing Checkbox -->
+                <small>8</small>
               </div>
-  
-              <button type="button" class="btn btn-sm btn-block btn-soft-secondary transition-3d-hover">Clear All</button>
-            </form>
-          </div>
-          <!-- End Filters -->
-              <!-- End Sidebar Filter -->
+              <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-1">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="brandNike">
+                  <label class="custom-control-label" for="brandNike">Nike</label>
+                </div>
+                <small>35</small>
+              </div>
+              <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-1">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="brandFredPerry">
+                  <label class="custom-control-label" for="brandFredPerry">Fred Perry</label>
+                </div>
+                <small>5</small>
+              </div>
+              <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-1">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="brandTnf">
+                  <label class="custom-control-label" for="brandTnf">The North Face</label>
+                </div>
+                <small>1</small>
+              </div>
+              <!-- End Checkboxes -->
+      
+              <!-- View More - Collapse -->
+              <div class="collapse" id="collapseBrand">
+                <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-1">
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="brandGucci">
+                    <label class="custom-control-label" for="brandGucci">Gucci</label>
+                  </div>
+                  <small>5</small>
+                </div>
+                <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-1">
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="brandMango">
+                    <label class="custom-control-label" for="brandMango">Mango</label>
+                  </div>
+                  <small>1</small>
+                </div>
+              </div>
+              <!-- End View More - Collapse -->
+      
+              <!-- Link -->
+              <a class="link link-collapse small font-size-1" data-toggle="collapse" href="#collapseBrand" role="button" aria-expanded="false" aria-controls="collapseBrand">
+                <span class="link-collapse__default">View more</span>
+                <span class="link-collapse__active">View less</span>
+                <span class="link__icon ml-1">
+                  <span class="link__icon-inner">+</span>
+                </span>
+              </a>
+              <!-- End Link -->
+            </div>
+      
+            <div class="border-bottom pb-4 mb-4">
+              <h4 class="h6 mb-3">Size</h4>
+      
+              <!-- Checkboxes -->
+              <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-1">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="sizeS" checked>
+                  <label class="custom-control-label" for="sizeS">S</label>
+                </div>
+                <small>27</small>
+              </div>
+              <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-1">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="sizeM">
+                  <label class="custom-control-label" for="sizeM">M</label>
+                </div>
+                <small>18</small>
+              </div>
+              <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-1">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="sizeL" checked>
+                  <label class="custom-control-label" for="sizeL">L</label>
+                </div>
+                <small>0</small>
+              </div>
+              <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-1">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="sizeXL">
+                  <label class="custom-control-label" for="sizeXL">XL</label>
+                </div>
+                <small>1</small>
+              </div>
+              <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-1">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="sizeXXL">
+                  <label class="custom-control-label" for="sizeXXL">XXL</label>
+                </div>
+                <small>2</small>
+              </div>
+              <!-- End Checkboxes -->
+            </div>
+      
+            <div class="border-bottom pb-4 mb-4">
+              <h4 class="h6 mb-3">Category</h4>
+      
+              <!-- Checkboxes -->
+              <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-1">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="categoryTshirt" checked>
+                  <label class="custom-control-label text-lh-md" for="categoryTshirt">T-shirt</label>
+                </div>
+                <small>73</small>
+              </div>
+              <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-1">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="categoryShoes">
+                  <label class="custom-control-label text-lh-md" for="categoryShoes">Shoes</label>
+                </div>
+                <small>0</small>
+              </div>
+              <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-1">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="categoryAccessories" checked>
+                  <label class="custom-control-label text-lh-md" for="categoryAccessories">Accessories</label>
+                </div>
+                <small>51</small>
+              </div>
+              <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-1">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="categoryTops" checked>
+                  <label class="custom-control-label" for="categoryTops">Tops</label>
+                </div>
+                <small>5</small>
+              </div>
+              <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-1">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="categoryBottom">
+                  <label class="custom-control-label" for="categoryBottom">Bottom</label>
+                </div>
+                <small>11</small>
+              </div>
+              <!-- End Checkboxes -->
+      
+              <!-- View More - Collapse -->
+              <div class="collapse" id="collapseCategory">
+                <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-1">
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="categoryShorts">
+                    <label class="custom-control-label" for="categoryShorts">Shorts</label>
+                  </div>
+                  <small>5</small>
+                </div>
+                <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-1">
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="categoryHats">
+                    <label class="custom-control-label" for="categoryHats">Hats</label>
+                  </div>
+                  <small>3</small>
+                </div>
+                <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-1">
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="categorySocks">
+                    <label class="custom-control-label" for="categorySocks">Socks</label>
+                  </div>
+                  <small>8</small>
+                </div>
+              </div>
+              <!-- End View More - Collapse -->
+      
+              <!-- Link -->
+              <a class="link link-collapse small font-size-1" data-toggle="collapse" href="#collapseCategory" role="button" aria-expanded="false" aria-controls="collapseCategory">
+                <span class="link-collapse__default">View more</span>
+                <span class="link-collapse__active">View less</span>
+                <span class="link__icon ml-1">
+                  <span class="link__icon-inner">+</span>
+                </span>
+              </a>
+              <!-- End Link -->
+            </div>
+      
+            <div class="border-bottom pb-4 mb-4">
+              <h4 class="h6 mb-3">Rating</h4>
+      
+              <!-- Checkboxes -->
+              <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-0">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="rating1">
+                  <label class="custom-control-label" for="rating1">
+                    <span class="d-block text-warning">
+                      <span class="fas fa-star"></span>
+                      <span class="far fa-star text-muted"></span>
+                      <span class="far fa-star text-muted"></span>
+                      <span class="far fa-star text-muted"></span>
+                      <span class="far fa-star text-muted"></span>
+                    </span>
+                  </label>
+                </div>
+                <small>3</small>
+              </div>
+              <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-0">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="rating2">
+                  <label class="custom-control-label" for="rating2">
+                    <span class="d-block text-warning">
+                      <span class="fas fa-star"></span>
+                      <span class="fas fa-star"></span>
+                      <span class="far fa-star text-muted"></span>
+                      <span class="far fa-star text-muted"></span>
+                      <span class="far fa-star text-muted"></span>
+                    </span>
+                  </label>
+                </div>
+                <small>10</small>
+              </div>
+              <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-0">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="rating3">
+                  <label class="custom-control-label" for="rating3">
+                    <span class="d-block text-warning">
+                      <span class="fas fa-star"></span>
+                      <span class="fas fa-star"></span>
+                      <span class="fas fa-star"></span>
+                      <span class="far fa-star text-muted"></span>
+                      <span class="far fa-star text-muted"></span>
+                    </span>
+                  </label>
+                </div>
+                <small>34</small>
+              </div>
+              <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-0">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="rating4">
+                  <label class="custom-control-label" for="rating4">
+                    <span class="d-block text-warning">
+                      <span class="fas fa-star"></span>
+                      <span class="fas fa-star"></span>
+                      <span class="fas fa-star"></span>
+                      <span class="fas fa-star"></span>
+                      <span class="far fa-star text-muted"></span>
+                    </span>
+                  </label>
+                </div>
+                <small>86</small>
+              </div>
+              <div class="form-group d-flex align-items-center justify-content-between font-size-1 text-lh-md text-secondary mb-0">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="rating5">
+                  <label class="custom-control-label" for="rating5">
+                    <span class="d-block text-warning">
+                      <span class="fas fa-star"></span>
+                      <span class="fas fa-star"></span>
+                      <span class="fas fa-star"></span>
+                      <span class="fas fa-star"></span>
+                      <span class="fas fa-star"></span>
+                    </span>
+                  </label>
+                </div>
+                <small>102</small>
+              </div>
+              <!-- End Checkboxes -->
+            </div>
+      
+            <button type="button" class="btn btn-sm btn-block btn-soft-secondary transition-3d-hover">Clear All</button>
+          </form>
+        </div>
+        <!-- End Filters -->
+      </div>
+      <!-- End Search Filters -->
+      
             
         </div>
       </div>
       <!-- End List of Properties Section -->
       
+{% endblock %}
+
+{% block javascript %}
+
+<script src="{% static 'vendor/jquery/dist/jquery.min.js' %}"></script>
+<script src="{% static 'vendor/jquery-migrate/dist/jquery-migrate.min.js' %}"></script>
+<script src="{% static 'vendor/ion-rangeslider/js/ion.rangeSlider.min.js' %}"></script>
+<script src="{% static 'js/components/hs.selectpicker.js' %}"></script>
+<script src="{% static 'js/components/hs.range-slider.js' %}"></script>
+
+<script>
+  $(document).on('ready', function () {
+    // initialization of forms
+    $.HSCore.components.HSRangeSlider.init('.js-range-slider');
+  });
+</script> 
 {% endblock %}

@@ -15,6 +15,8 @@ from ecommerce.mixins import NextUrlMixin, RequestFormAttachMixin
 from .forms import LoginForm, RegisterForm, GuestForm, ReactivateEmailForm, UserDetailChangeForm
 from .models import GuestEmail, EmailActivation
 from .signals import user_logged_in
+from orders.models import Order
+
 
 
 # @login_required # /accounts/login/?next=/some/path/

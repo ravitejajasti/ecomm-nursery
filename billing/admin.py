@@ -6,4 +6,4 @@ admin.site.register(BillingProfile)
 
 admin.site.register(Card)
 
-admin.site.register(Charge)
+admin.site.register(Charge) 

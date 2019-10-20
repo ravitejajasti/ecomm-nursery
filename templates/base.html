@@ -23,14 +23,17 @@
   <link rel="stylesheet" type="text/css" href="{% static 'vendor/hs-megamenu/src/hs.megamenu.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'vendor/slick-carousel/slick/slick.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap-select/dist/css/bootstrap-select.min.css' %}">
 
+  {% block css %}
+  {% endblock %}
   <!-- CSS VRIKSH Template -->
   <link rel="stylesheet" href="{% static 'css/theme.css' %}">
 </head>
 <body>
 
   <!-- ========== HEADER ========== -->
-  <header id="header" class="u-header u-header--abs-top-md u-header--bg-transparent u-header--show-hide-md"
+  <header id="header" class="u-header"
           data-header-fix-moment="500"
           data-header-fix-effect="slide">
     <!-- Search -->
@@ -160,7 +163,7 @@
                data-unfold-hide-on-scroll="true"
                data-unfold-animation-in="slideInUp"
                data-unfold-animation-out="fadeOut">
-               <img class="dropdown-item-icon" src="{% static 'img/hyd.png' %}" alt="SVG">
+               <img class="dropdown-item-icon" src="{% static 'img/hyd.png' %}" alt="SVG"></img>
               <span class="d-inline-block d-sm-none">US</span>
               <span class="d-none d-sm-inline-block">Hyderabad</span>
             </a>
@@ -374,12 +377,12 @@
               </li>
               <!-- End Home -->
 
-              <!-- Pages -->
+              <!-- Seeds & Soil -->
               <li class="nav-item hs-has-sub-menu u-header__nav-item"
                   data-event="hover"
                   data-animation-in="slideInUp"
                   data-animation-out="fadeOut">
-                <a id="pagesMegaMenu" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="pagesSubMenu">Pages</a>
+                <a id="pagesMegaMenu" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="pagesSubMenu">Seeds & Soil</a>
 
                 <!-- Pages - Submenu -->
                 <ul id="pagesSubMenu" class="hs-sub-menu u-header__sub-menu" aria-labelledby="pagesMegaMenu" style="min-width: 230px;">
@@ -389,7 +392,7 @@
 
                     <ul id="navSubmenuPagesAccount" class="hs-sub-menu u-header__sub-menu" aria-labelledby="navLinkPagesAccount" style="min-width: 230px;">
                       <li><a class="nav-link u-header__sub-menu-nav-link" href="../account/dashboard.html">Dashboard</a></li>
-                      <li><a class="nav-link u-header__sub-menu-nav-link" href="../account/profile.html">Profile</a></li>
+                      <li><a class="nav-link u-header__sub-menu-nav-link" href="http://127.0.0.1:8000/account">Profile</a></li>
                       <li><a class="nav-link u-header__sub-menu-nav-link" href="../account/my-tasks.html">My tasks</a></li>
                       <li><a class="nav-link u-header__sub-menu-nav-link" href="../account/projects.html">Projects</a></li>
                       <li><a class="nav-link u-header__sub-menu-nav-link" href="../account/members.html">Members</a></li>
@@ -514,14 +517,14 @@
                 </ul>
                 <!-- End Pages - Submenu -->
               </li>
-              <!-- End Pages -->
+              <!-- End Seeds & Soil -->
 
-              <!-- Blog -->
+              <!-- Organics -->
               <li class="nav-item hs-has-sub-menu u-header__nav-item"
                   data-event="hover"
                   data-animation-in="slideInUp"
                   data-animation-out="fadeOut">
-                <a id="blogMegaMenu" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="blogSubMenu">Blog</a>
+                <a id="blogMegaMenu" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="blogSubMenu">Organics</a>
 
                 <!-- Blog - Submenu -->
                 <ul id="blogSubMenu" class="hs-sub-menu u-header__sub-menu" aria-labelledby="blogMegaMenu" style="min-width: 230px;">
@@ -738,11 +741,9 @@
   <!-- ========== END HEADER ========== -->
    <!-- ========== MAIN CONTENT ========== -->
   <main id="content" role="main">
-    <div class="space-2 space-top-md-4 space-bottom-md-3 space-top-lg-3">
 
 {% block content %}
 {% endblock %}
-</div>
 </main>
   <!-- ========== END MAIN CONTENT ========== -->
 
@@ -754,7 +755,6 @@
           <div class="row justify-content-md-between">
             <div class="col-sm-4 col-lg-2 mb-4 mb-lg-0">
               <h4 class="h6 font-weight-semi-bold">About</h4>
-  
               <!-- List Group -->
               <ul class="list-group list-group-flush list-group-borderless mb-0">
                 <li><a class="list-group-item list-group-item-action" href="../pages/about-agency.html">About</a></li>
@@ -822,7 +822,7 @@
       <div class="container text-center space-1">
         <!-- Logo -->
         <a class="d-inline-flex align-items-center mb-2" href="/" aria-label="Front">
-          <svg class="u-header__navbar-brand-default" src="{% static 'img/vriksh.svg' %}" alt="Logo"></svg>
+          <svg class="u-header__navbar-brand-default" src="" alt="Logo"></svg>
           <span class="u-header__navbar-brand-text">VRIKSH</span>
         </a>
         <!-- End Logo -->
@@ -912,7 +912,7 @@
                 </a>
               </li>
               <li class="u-sidebar--account__list-item">
-                <a class="u-sidebar--account__list-link" href="profile.html">
+                <a class="u-sidebar--account__list-link" href="http://127.0.0.1:8000/account">
                   <span class="fas fa-user-circle u-sidebar--account__list-icon mr-2"></span>
                   Profile
                 </a>
@@ -936,13 +936,13 @@
                 </a>
               </li>
               <li class="u-sidebar--account__list-item">
-                <a class="u-sidebar--account__list-link" href="activity.html">
+                <a class="u-sidebar--account__list-link" href="http://127.0.0.1:8000/account/history/products/">
                   <span class="fas fa-exchange-alt u-sidebar--account__list-icon mr-2"></span>
                   Activity
                 </a>
               </li>
               <li class="u-sidebar--account__list-item">
-                <a class="u-sidebar--account__list-link" href="payment-methods.html">
+                <a class="u-sidebar--account__list-link" href="http://127.0.0.1:8000/billing/payment-method">
                   <span class="fas fa-wallet u-sidebar--account__list-icon mr-2"></span>
                   Payment methods
                 </a>
@@ -961,13 +961,13 @@
             <!-- List Links -->
             <ul class="list-unstyled u-sidebar--account__list">
               <li class="u-sidebar--account__list-item">
-                <a class="u-sidebar--account__list-link" href="invite-friends.html">
+                <a class="u-sidebar--account__list-link" href="http://127.0.0.1:8000/invite-friends">
                   <span class="fas fa-user-plus u-sidebar--account__list-icon mr-2"></span>
                   Invite friends
                 </a>
               </li>
               <li class="u-sidebar--account__list-item">
-                <a class="u-sidebar--account__list-link" href="api-token.html">
+                <a class="u-sidebar--account__list-link" href="http://127.0.0.1:8000/logout">
                   <span class="fas fa-sign-out-alt u-sidebar--account__list-icon mr-2"></span>
                   Logout
                 </a>

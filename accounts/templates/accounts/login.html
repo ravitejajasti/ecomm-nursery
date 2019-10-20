@@ -28,8 +28,7 @@
             <div>
               <!-- Testimonials -->
               <div class="w-md-80 w-lg-60 text-center mx-auto">
-                <blockquote class="h5 text-white font-weight-normal mb-4">The template is really nice and offers quite a large set of options. Thank you!</blockquote>
-                <h1 class="h6 text-white-70">Maria Muszynska, Google</h1>
+                <blockquote class="h5 text-white font-weight-normal mb-4">A human breathes about 740kg of oxygen per year. Which is, very roughly, seven or eight trees’ worth.</blockquote>
               </div>
               <!-- End Testimonials -->
             </div>           
@@ -73,8 +72,12 @@
             <!-- End Form -->
             <br>
             <p>- OR Login Using -</p>
-            <button type="button" class="btn btn-facebook mb-1">Facebook</button>
-            <button type="button" class="btn btn-google mb-1">Google</button>
+            {% load socialaccount %}
+            <a href="{% provider_login_url "facebook" method="oauth2" %}?next={{request.path}}">
+            <button type="button" class="btn btn-facebook mb-1">Facebook</button></a>
+            {% load socialaccount %}
+            <a href="{% provider_login_url "google" %}">
+            <button type="button" class="btn btn-google mb-1">Google</button></a>
             <button type="button" class="btn btn-twitter mb-1">Twitter</button>
           </div>
         </div>

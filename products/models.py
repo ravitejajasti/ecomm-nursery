@@ -2,6 +2,8 @@ import random
 import os
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
+from django.core.validators import MinValueValidator, \
+    MaxValueValidator
 
 from django.db import models
 from django.db.models import Q
@@ -11,6 +13,7 @@ from django.urls import reverse
 from ecommerce.aws.download.utils import AWSDownload
 from ecommerce.aws.utils import ProtectedS3Storage
 from ecommerce.utils import unique_slug_generator, get_filename
+
 
 def get_filename_ext(filepath):
     base_name = os.path.basename(filepath)
@@ -65,11 +68,41 @@ class ProductManager(models.Manager):
         return self.get_queryset().active().search(query)
 
 
+#Testing Comments section Ravi.
+
+
+class Comment(models.Model):
+    user        = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete= 'models.DO_NOTHING')
+    # product     = models.ManyToManyField(Product, default=True)
+    # url         = models.URLField(null=True) # not a path, full url http://www.srvup.com/projects/1
+    content     = models.TextField()
+    #image       = models.ImageField()
+    allow_annon = models.BooleanField(default=True)
+    timestamp   = models.DateTimeField(auto_now_add=True)
+    updated     = models.DateTimeField(auto_now=True)
+    RATING_CHOICES = (
+        (1, 1),
+        (2, 2),
+        (3, 3),
+        (4, 4),
+        (5, 5),
+        )
+    rating = models.IntegerField(choices=RATING_CHOICES, default=5)
+    
+    def __str__(self):
+        return self.content
+
+    # @property
+    # def owner(self):
+    #     return self.user
+ 
+    
 class Product(models.Model):
     title           = models.CharField(max_length=120)
     slug            = models.SlugField(blank=True, unique=True)
     description     = models.TextField()
     price           = models.DecimalField(decimal_places=2, max_digits=20, default=39.99)
+    discount        = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(100)], default=39.99)
     image           = models.ImageField(upload_to=upload_image_path, null=True, blank=True)
     featured        = models.BooleanField(default=False)
     active          = models.BooleanField(default=True)
@@ -93,7 +126,7 @@ class Product(models.Model):
     ferns           = models.BooleanField(default=False)
     office          = models.BooleanField(default=False)
     balcony         = models.BooleanField(default=False)
-
+    comments        = models.ManyToManyField('Comment')
 
 
     objects = ProductManager()
@@ -115,6 +148,12 @@ class Product(models.Model):
     def get_downloads(self):
         qs = self.productfile_set.all()
         return qs
+    # Ravi's - Calculating after discount price
+    @property
+    def finalprice(self):
+        return (self.price)*(1-self.discount)
+
+    # End Ravi's - Calculating after discount price
 
 
 def product_pre_save_receiver(sender, instance, *args, **kwargs):
@@ -184,9 +223,3 @@ class ProductFile(models.Model):
         return reverse("products:download", 
                     kwargs={"slug": self.product.slug, "pk": self.pk}
                 )
-
-
-
-
-
-

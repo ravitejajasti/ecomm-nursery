@@ -58,11 +58,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-
+ 
     # third party
     'storages',
     'corsheaders',
-    #"pinax.referrals",
+    "pinax.referrals",
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -72,6 +72,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.linkedin',
     'allauth.socialaccount.providers.linkedin_oauth2',
     'allauth.socialaccount.providers.microsoft',
+    'rest_framework',
 
     #our apps
     'accounts',

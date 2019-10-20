@@ -183,8 +183,8 @@
       </form>
       <!-- End Form -->
       <p>- OR Login Using -</p>
-      {% load socialaccount %}
-<a href="{% provider_login_url "facebook" method="oauth2" %}?next={{request.path}}">
+          {% load socialaccount %}
+            <a href="{% provider_login_url "facebook" method="oauth2" %}?next={{request.path}}">
             <button type="button" class="btn btn-facebook mb-1">Facebook</button></a>
             {% load socialaccount %}
 

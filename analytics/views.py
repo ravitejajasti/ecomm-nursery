@@ -54,7 +54,7 @@ class SalesAjaxView(View):
 
 class SalesView(LoginRequiredMixin, TemplateView):
     template_name = 'analytics/sales.html'
-
+    template_name = 'accoutns/home.html'
     def dispatch(self, *args, **kwargs):
         user = self.request.user
         if not user.is_staff:

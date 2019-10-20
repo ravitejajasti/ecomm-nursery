@@ -39,6 +39,13 @@ from orders.views import LibraryView
 
 from .views import home_page, about_page, contact_page
 
+
+from products.views import (
+        ProductListView, 
+        ProductDetailSlugView, 
+        ProductDownloadView
+        )
+
 urlpatterns = [
     url(r'^$', home_page, name='home'),
     url(r'^about/$', about_page, name='about'),
@@ -74,6 +81,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     #url(r"^referrals/", include("pinax.referrals.urls", namespace="pinax_referrals")),
     url(r'^accounts/', include("allauth.urls")),
+    # url(r'^1234/$', TemplateView.as_view(template_name="products/detail.html")),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

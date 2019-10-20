@@ -1,387 +1,1133 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}
   {{object.title}}
 {% endblock %}
 
+{% block css %}
+  <!-- CSS Implementing Plugins -->
+  <link rel="stylesheet" href="{% static 'vendor/bootstrap-select/dist/css/bootstrap-select.min.css' %}">
+  <link rel="stylesheet" href="{% static 'vendor/animate.css/animate.min.css' %}">
+
+{% endblock %}
 {% block content %}
 
-  <!-- ========== MAIN ========== -->
+  <!-- ========== MAIN CONTENT ========== -->
   <main id="content" role="main">
-    <!-- Description Section -->
-    <div class="container">
+    <!-- Hero Section -->
+    <div class="container space-top-1 space-top-sm-2">
       <div class="row">
         <div class="col-lg-7 mb-7 mb-lg-0">
-          <!-- Cubeportfolio -->
-          <div class="cbp"
-               data-layout="grid"
-               data-animation="quicksand"
-               data-x-gap="32"
-               data-y-gap="32"
-               data-media-queries='[
-                {"width": 300, "cols": 1}
-              ]'>
-            <!-- Item -->
-            <div class="cbp-item">
-              <div class="cbp-caption">
-                {% if object.image %}
-                <img src='{{ object.image.url }}' class='img-fluid' />
-            {% endif %}
-              </div>
-            </div>
-            <!-- End Item -->
-            {% if object.image2 %}
-            <!-- Item -->
-            <div class="cbp-item">
-              <div class="cbp-caption">
-                <img class="rounded" src="../../assets/img/600x600/img2.jpg" alt="Image Description">
-              </div>
-            </div>
-            <!-- End Item -->
+          <div class="pr-lg-4">
+            <div class="position-relative">
+              <!-- Main Slider -->
+              <div id="heroSlider" class="js-slick-carousel u-slick border rounded"
+                   data-fade="true"
+                   data-infinite="true"
+                   data-autoplay-speed="7000"
+                   data-arrows-classes="d-none d-sm-inline-block u-slick__arrow u-slick__arrow--flat-white content-centered-y shadow-soft rounded-circle"
+                   data-arrow-left-classes="fas fa-arrow-left u-slick__arrow-inner u-slick__arrow-inner--left ml-3"
+                   data-arrow-right-classes="fas fa-arrow-right u-slick__arrow-inner u-slick__arrow-inner--right mr-3"
+                   data-nav-for="#heroSliderNav">
+                   {% if object.image %}
+                   <div class="js-slide">
+                  <img class="img-fluid w-100 rounded" src="{{ object.image.url }}" alt="Image Description">
+                </div>
+                {% endif %}
 
-            <!-- Item -->
-            <div class="cbp-item">
-              <div class="cbp-caption">
-                <img class="rounded" src="../../assets/img/600x600/img3.jpg" alt="Image Description">
-              </div>
-            </div>
-            <!-- End Item -->
+                {% if object.image2 %}
+                <div class="js-slide">
+                  <img class="img-fluid w-100 rounded" src="{% static 'img/600x600/img13.jpg' %}"alt="Image Description">
+                </div>
+                <div class="js-slide">
+                  <img class="img-fluid w-100 rounded" src="{% static 'img/600x600/img14.jpg' %}"alt="Image Description">
+                </div>
+                {% endif %}
 
-            <!-- Item -->
-            <div class="cbp-item">
-              <div class="cbp-caption">
-                <img class="rounded" src="../../assets/img/600x600/img4.jpg" alt="Image Description">
               </div>
+              <!-- End Main Slider -->
+
+              <!-- Slider Nav -->
+              <div class="position-absolute bottom-0 right-0 left-0 px-4 py-3">
+                <div id="heroSliderNav" class="js-slick-carousel u-slick u-slick--gutters-1 u-slick--transform-off max-width-27 mx-auto"
+                     data-slides-show="3"
+                     data-infinite="true"
+                     data-autoplay-speed="7000"
+                     data-is-thumbs="true"
+                     data-is-thumbs-progress="true"
+                     data-thumbs-progress-options='{
+                       "color": "#377DFF",
+                       "width": 8
+                     }'
+                     data-thumbs-progress-container=".js-slick-thumb-progress"
+                     data-nav-for="#heroSlider">
+                  <div class="js-slide p-1">
+                    <a class="js-slick-thumb-progress position-relative d-block u-avatar border rounded-circle p-1" href="javascript:;">
+                      <img class="img-fluid rounded-circle" src="{% static 'img/100x100/img16.jpg' %}"alt="Image Description">
+                    </a>
+                  </div>
+                  <div class="js-slide p-1">
+                    <a class="js-slick-thumb-progress position-relative d-block u-avatar border rounded-circle p-1" href="javascript:;">
+                      <img class="img-fluid rounded-circle" src="{% static 'img/100x100/img17.jpg' %}"alt="Image Description">
+                    </a>
+                  </div>
+                  <div class="js-slide p-1">
+                    <a class="js-slick-thumb-progress position-relative d-block u-avatar border rounded-circle p-1" href="javascript:;">
+                      <img class="img-fluid rounded-circle" src="{% static 'img/100x100/img18.jpg' %}"alt="Image Description">
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <!-- End Slider Nav -->
             </div>
-            <!-- End Item -->
-            {% endif %}
-            <br />
-            <p><i>* Images are for representative purpose only.</i></p>
           </div>
-          <!-- End Cubeportfolio -->
         </div>
 
-        <div id="stickyBlockStartPoint" class="col-lg-5">
-          <!-- Sticky Block -->
-          <div class="js-sticky-block pl-lg-4"
-               data-parent="#stickyBlockStartPoint"
-               data-sticky-view="lg"
-               data-start-point="#stickyBlockStartPoint"
-               data-end-point="#stickyBlockEndPoint"
-               data-offset-top="80"
-               data-offset-bottom="130">
-            <div class="mb-6">
-              <h1 class="h4 text-primary font-weight-semi-bold">{{ object.title }}</h1>
-              <p class="mb-0">{{ object.timestamp|timesince }} ago
-                {{ object.description|linebreaks }}</p>
+        <!-- Product Description -->
+        <div class="col-lg-5">
+          <!-- Rating -->
+          <div class="d-flex align-items-center small mb-2">
+            <div class="text-warning mr-2">
+              <large class="fas fa-star"></large>
+              <large class="fas fa-star"></large>
+              <large class="fas fa-star"></large>
+              <large class="fas fa-star"></large>
+              <large class="fas fa-star"></large>
             </div>
-            {% include 'products/snippets/update-cart.html' with product=object cart=cart %}
-            <hr class="my-5">
+            <a class="js-go-to link-muted" href="#reviewSection"
+               data-target="#reviewSection"
+               data-compensation="#header"
+               data-type="static">Read all 287 reviews</a>
+          </div>
+          <!-- End Rating -->
 
-            <!-- List -->
-            <ul class="list-unstyled mb-0">
-              <li class="media mb-1">
-                <div class="d-flex w-40 w-sm-30">
-                  <h3 class="h6">Client</h3>
-                </div>
-                <div class="media-body">
-                  <small class="text-muted">
-                    Htmlstream
-                  </small>
-                </div>
-              </li>
+          <div class="mb-5">
+            <!-- Title -->
+            <h1 class="h3 font-weight-medium">{{ object.title }}</h1>
+          <!-- End Title -->
 
-              <li class="media mb-1">
-                <div class="d-flex w-40 w-sm-30">
-                  <h4 class="h6">Designers</h4>
-                </div>
-                <div class="media-body">
-                  <small class="text-muted">
-                    Maria Muszynska,
-                  </small>
-                  <small class="text-muted">
-                    Jack Wayley
-                  </small>
-                </div>
-              </li>
+          <!-- Price -->
+          <div class="mb-5">
+            <span class="font-size-2 font-weight-medium">₹ 159.99 {{ object.finalprice }}</span>
+            <span class="text-secondary ml-2"><del>₹ 179.99</del></span>
+          </div>
+          <!-- End Price -->
+        </div>
 
-              <li class="media mb-1">
-                <div class="d-flex w-40 w-sm-30">
-                  <h4 class="h6">Partners</h4>
-                </div>
-                <div class="media-body">
-                  <small class="text-muted">
-                    Pixeel
-                  </small>
-                </div>
-              </li>
-
-              <li class="media">
-                <div class="d-flex w-40 w-sm-30">
-                  <h4 class="h6">Awards</h4>
-                </div>
-                <div class="media-body">
-                  <small class="d-block text-muted mb-1">
-                    FWA Site of the Day
-                  </small>
-                  <small class="d-block text-muted mb-1">
-                    Awwwards Site of the Day
-                  </small>
-                  <small class="d-block text-muted mb-1">
-                    CSSAwards Site of the Day
-                  </small>
-                  <small class="d-block text-muted">
-                    Bronze ADCN Lamp (Digital Craft)
-                  </small>
-                </div>
-              </li>
-            </ul>
-            <!-- End List -->
-
-            <hr class="my-5">
-
-            <div class="media">
-              <div class="d-flex w-40 w-sm-30">
-                <h4 class="h6">Share</h4>
-              </div>
-              <div class="media-body">
-                <!-- Social Networks -->
-                <ul class="list-inline mb-0">
-                  <li class="list-inline-item">
-                    <a class="btn btn-sm btn-icon btn-soft-secondary btn-bg-transparent" href="#">
-                      <span class="fab fa-facebook-f btn-icon__inner"></span>
-                    </a>
-                  </li>
-                  <li class="list-inline-item">
-                    <a class="btn btn-sm btn-icon btn-soft-secondary btn-bg-transparent" href="#">
-                      <span class="fab fa-google btn-icon__inner"></span>
-                    </a>
-                  </li>
-                  <li class="list-inline-item">
-                    <a class="btn btn-sm btn-icon btn-soft-secondary btn-bg-transparent" href="#">
-                      <span class="fab fa-twitter btn-icon__inner"></span>
-                    </a>
-                  </li>
-                  <li class="list-inline-item">
-                    <a class="btn btn-sm btn-icon btn-soft-secondary btn-bg-transparent" href="#">
-                      <span class="fab fa-github btn-icon__inner"></span>
-                    </a>
-                  </li>
-                </ul>
-                <!-- End Social Networks -->
-              </div>
+          <!-- Ravi Testing col-7 and col-5 for quantity and button in same row with addtl. first two lines -->
+          
+        <!-- Quantity -->
+        
+        <div class="border rounded py-2 px-3 mb-3 col-7">
+          <div class="js-quantity row align-items-center">
+            <div class="col-7">
+              <large class="d-block text-secondary font-weight-medium">Quantity</large>
+              <input class="js-result form-control h-auto border-0 rounded p-0" type="text" value="1">
+            </div>
+            <div class="col-5 text-right">
+              <a class="js-minus btn btn-icon btn-xs btn-outline-secondary rounded-circle" href="javascript:;">
+                <large class="fas fa-minus btn-icon__inner"></large>
+              </a>
+              <a class="js-plus btn btn-icon btn-xs btn-outline-secondary rounded-circle" href="javascript:;">
+                <large class="fas fa-plus btn-icon__inner"></large>
+              </a>
             </div>
           </div>
-          <!-- End Sticky Block -->
+        </div>
+        <!-- End Quantity -->
+
+        
+              {% include 'products/snippets/update-cart.html' with product=object cart=cart %}
+            <br>
+
+          <!-- End Ravi Testing col-7 and col-5 for quantity and button in same row with addtl. first two lines -->
+
+          <!-- Accordion -->
+          <div id="shopCartAccordion" class="accordion mb-5">
+              <!-- Card -->
+              <div class="card">
+                <div class="card-header card-collapse" id="shopCardHeadingOne">
+                  <h3 class="mb-0">
+                    <button type="button" class="btn btn-link btn-block card-btn collapsed"
+                            data-toggle="collapse"
+                            data-target="#shopCardOne"
+                            aria-expanded="false"
+                            aria-controls="shopCardOne">
+                      <span class="row align-items-center">
+                        <span class="col-9">
+                          <span class="media align-items-center">
+                            <span id="icon65" class="svg-preloader ie-height-48 w-100 max-width-6 mr-3">
+                              <img class="js-svg-injector" src="{% static 'svg/icons/icon-65.svg' %}" alt="SVG"
+                                  data-parent="#icon65">
+                            </span>
+                            <span class="media-body">
+                              <span class="d-block font-size-1 font-weight-medium">Free shipping</span>
+                            </span>
+                          </span>
+                        </span>
+                        <span class="col-3 text-right">
+                          <span class="card-btn-arrow">
+                            <span class="fas fa-arrow-down small"></span>
+                          </span>
+                        </span>
+                      </span>
+                    </button>
+                  </h3>
+                </div>
+                <div id="shopCardOne" class="collapse" aria-labelledby="shopCardHeadingOne" data-parent="#shopCartAccordion">
+                  <div class="card-body">
+                    <p class="small mb-0">We offer free shipping anywhere in the U.S. A skilled delivery team will bring the boxes into your office.</p>
+                  </div>
+                </div>
+              </div>
+              <!-- End Card -->
+
+              <!-- Card -->
+              <div class="card">
+                <div class="card-header card-collapse" id="shopCardHeadingTwo">
+                  <h4 class="mb-0">
+                    <button type="button" class="btn btn-link btn-block card-btn collapsed"
+                            data-toggle="collapse"
+                            data-target="#shopCardTwo"
+                            aria-expanded="false"
+                            aria-controls="shopCardTwo">
+                      <span class="row align-items-center">
+                        <span class="col-9">
+                          <span class="media align-items-center">
+                            <span id="icon64" class="svg-preloader ie-height-48 w-100 max-width-6 mr-3">
+                              <img class="js-svg-injector" src="{% static 'svg/icons/icon-64.svg" alt="SVG"
+                                  data-parent="#icon64">
+                            </span>
+                            <span class="media-body">
+                              <span class="d-block font-size-1 font-weight-medium">30 Days return</span>
+                            </span>
+                          </span>
+                        </span>
+                        <span class="col-3 text-right">
+                          <span class="card-btn-arrow">
+                            <span class="fas fa-arrow-down small"></span>
+                          </span>
+                        </span>
+                      </span>
+                    </button>
+                  </h4>
+                </div>
+                <div id="shopCardTwo" class="collapse" aria-labelledby="shopCardHeadingTwo" data-parent="#shopCartAccordion">
+                  <div class="card-body">
+                    <p class="small mb-0">If you're not satisfied, return it for a full refund. We'll take care of disassembly and return shipping.</p>
+                  </div>
+                </div>
+              </div>
+              <!-- End Card -->
+          </div>
+          <!-- End Accordion -->
+            
+          <!-- Help Link -->
+          <div class="media align-items-center">
+            <span id="icon4" class="svg-preloader ie-height-48 w-100 max-width-6 mr-2">
+              <img class="js-svg-injector" src="{% static 'svg/icons/icon-4.svg" alt="SVG"
+                   data-parent="#icon4">
+            </span>
+            <div class="media-body text-secondary small">
+              <span class="font-weight-medium mr-1">Need Help?</span>
+              <a class="link-muted" href="#">Chat now</a>
+            </div>
+          </div>
+          <!-- End Help Link -->
+        </div>
+        <!-- End Product Description -->
+      </div>
+    </div>
+    <!-- End Hero Section -->
+
+
+    <!-- Product Description Section -->
+    <div class="container">
+        <hr class="my-6">
+        <div class="row">
+        
+        <div class="col-md-6 mb-5 mb-md-0">
+          <div class="pr-lg-4">
+            <h3 class="h5 font-weight-medium">Details</h3>
+            <p>As popular off field as they are on, New Era caps are standard issue amongst those with a passion for street culture, blending progressive styles with carefully crafted design. Known for their innovative use of colour, bold designs are added season upon season, referencing everything.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 mb-5 mb-md-0">
+          <h3 class="h5 font-weight-medium">Material and care</h3>
+
+          <div class="row">
+            <div class="col-sm-6">
+              <ul class="text-secondary pl-3 mb-0">
+                <li class="py-1">Main: 100% Cotton</li>
+                <li class="py-1">Soft twill</li>
+                <li class="py-1">Ribbed, diagonal pattern</li>
+                <li class="py-1">Slightly structured</li>
+              </ul>
+            </div>
+
+            <div class="col-sm-6">
+              <ul class="text-secondary pl-3 mb-0">
+                <li class="py-1">One size fits all</li>
+                <li class="py-1">Imported</li>
+                <li class="py-1">Product color: Dark greenish</li>
+                <li class="py-1">Product code: #1465791</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <!-- End Description Section -->
+    <!-- End Product Description Section -->
 
-    <!-- Sticky Block End Point -->
-    <div id="stickyBlockEndPoint"></div>
+    <!-- Features -->
+    
+    <!-- Estimated Costs -->
+    <div class="container space-top-2">
+      <div class="row">
+          <div class="col-md-6">
+            <!-- Title -->
+            <div class="mb-3">
+              <h3 class="h5">Accessibility</h3>
+            </div>
+          <!-- End Title -->
+          <div class="row">
+            <div class="col-sm-4">
+              <span class="h1 font-weight-medium mb-0">$810</span>
+              <p>Approximate costs per month</p>
+            </div>
 
-    <hr class="my-0">
+            <div class="col-sm-8">
+              <!-- Costs List -->
+              <ul class="list-unstyled font-size-1 mb-0">
+                <li class="d-flex align-items-center py-1">
+                  <span class="fas fa-hand-holding-usd min-width-4 text-secondary text-center mr-2"></span>
+                  <span class="font-weight-medium">Mortgage</span>
+                  <div class="ml-auto">
+                    <span class="text-secondary">$700 p/m</span>
+                  </div>
+                </li>
 
-    <!-- Portfolio Section -->
-    <div class="container space-top-2 space-top-md-3 space-bottom-1">
+                <li class="d-flex align-items-center py-1">
+                  <span class="fas fa-burn min-width-4 text-secondary text-center mr-2"></span>
+                  <span class="font-weight-medium">Energy</span>
+                  <div class="ml-auto">
+                    <span class="text-secondary">from $72 p/m</span>
+                  </div>
+                </li>
+
+                <li class="d-flex align-items-center py-1">
+                  <span class="fas fa-tint min-width-4 text-secondary text-center mr-2"></span>
+                  <span class="font-weight-medium">Water</span>
+                  <div class="ml-auto">
+                    <span class="text-secondary">from $38 p/m</span>
+                  </div>
+                </li>
+
+                <li class="d-flex align-items-center py-1">
+                  <span class="fas fa-shield-alt min-width-4 text-secondary text-center mr-2"></span>
+                  <span class="font-weight-medium">Home insurance</span>
+                  <div class="ml-auto">
+                    <span class="text-secondary">not known</span>
+                  </div>
+                </li>
+              </ul>
+                <!-- End Costs List -->
+            </div>
+          </div>
+        </div>
+
+      <div class="col-md-6">
+        <!-- Title -->
+        <div class="mb-3">
+            <h3 class="h5">Features</h3>
+          </div>
+        <!-- End Title -->
+        <div class="row">
+            <div class="col-sm-6">
+        <!-- Accessibility List -->
+        <ul class="list-unstyled font-size-1 mb-0">
+          <li class="d-flex align-items-center py-1">
+            <span class="font-weight-medium">Location</span>
+            <div class="ml-auto">
+              <span class="fas fa-star text-warning ml-1"></span>
+              <span class="fas fa-star text-warning ml-1"></span>
+              <span class="fas fa-star text-warning ml-1"></span>
+              <span class="fas fa-star text-warning ml-1"></span>
+              <span class="fas fa-star text-warning ml-1"></span>
+            </div>
+          </li>
+
+          <li class="d-flex align-items-center py-1">
+            <span class="font-weight-medium">Area safety</span>
+            <div class="ml-auto">
+              <span class="fas fa-star text-warning ml-1"></span>
+              <span class="fas fa-star text-warning ml-1"></span>
+              <span class="fas fa-star text-warning ml-1"></span>
+              <span class="fas fa-star text-warning ml-1"></span>
+              <span class="fas fa-star text-warning ml-1"></span>
+            </div>
+          </li>
+
+          <li class="d-flex align-items-center py-1">
+            <span class="font-weight-medium">Close to schools</span>
+            <div class="ml-auto">
+              <span class="fas fa-star text-warning ml-1"></span>
+              <span class="fas fa-star text-warning ml-1"></span>
+              <span class="fas fa-star text-warning ml-1"></span>
+              <span class="fas fa-star text-warning ml-1"></span>
+              <span class="fas fa-star text-warning ml-1"></span>
+            </div>
+          </li>
+        </ul>
+        <!-- End Accessibility List -->
+      </div>
+
+      <div class="col-sm-6">
+        <!-- Accessibility List -->
+        <ul class="list-unstyled font-size-1 mb-0">
+          <li class="d-flex align-items-center py-1">
+            <span class="font-weight-medium">Low cost</span>
+            <div class="ml-auto">
+              <span class="fas fa-star text-warning ml-1"></span>
+              <span class="fas fa-star text-warning ml-1"></span>
+              <span class="fas fa-star text-warning ml-1"></span>
+              <span class="fas fa-star text-warning ml-1"></span>
+              <span class="fas fa-star text-warning ml-1"></span>
+            </div>
+          </li>
+
+          <li class="d-flex align-items-center py-1">
+            <span class="font-weight-medium">Built around</span>
+            <div class="ml-auto">
+              <span class="fas fa-star text-warning ml-1"></span>
+              <span class="fas fa-star text-warning ml-1"></span>
+              <span class="fas fa-star text-warning ml-1"></span>
+              <span class="fas fa-star text-warning ml-1"></span>
+              <span class="far fa-star text-warning ml-1"></span>
+            </div>
+          </li>
+
+          <li class="d-flex align-items-center py-1">
+            <span class="font-weight-medium">Value</span>
+            <div class="ml-auto">
+              <span class="fas fa-star text-warning ml-1"></span>
+              <span class="fas fa-star text-warning ml-1"></span>
+              <span class="fas fa-star text-warning ml-1"></span>
+              <span class="far fa-star text-warning ml-1"></span>
+              <span class="far fa-star text-warning ml-1"></span>
+            </div>
+          </li>
+        </ul>
+        <!-- End Accessibility List -->
+      </div>
+      </div>
+      </div>
+      </div>
+    </div>
+    <!-- End Estimated Costs -->
+    
+    <!-- End Features -->
+
+    <!-- Related Products Section -->
+    <div class="container space-2 space-lg-3">
       <!-- Title -->
-      <div class="w-md-80 w-lg-50 text-center mx-md-auto mb-9">
-        <span class="u-label u-label--sm u-label--success mb-2">Portfolio</span>
-        <h2 class="text-primary">Our <strong class="font-weight-semi-bold">Branding</strong> works</h2>
-        <p>Experience a level of our quality in both design &amp; customization works.</p>
+      <div class="w-md-80 w-lg-40 text-center mx-md-auto mb-9">
+        <h2 class="h3 font-weight-medium">Just for you</h2>
       </div>
       <!-- End Title -->
 
-      <!-- Cubeportfolio -->
-      <div class="u-cubeportfolio">
-        <!-- Content -->
-        <div class="cbp"
-             data-layout="grid"
-             data-controls="#filterControls"
-             data-animation="quicksand"
-             data-x-gap="32"
-             data-y-gap="32"
-             data-media-queries='[
-              {"width": 1500, "cols": 4},
-              {"width": 1100, "cols": 4},
-              {"width": 800, "cols": 3},
-              {"width": 480, "cols": 2},
-              {"width": 300, "cols": 1}
-            ]'>
-          <!-- Item -->
-          <div class="cbp-item rounded graphic">
-            <a class="cbp-caption" href="single-page-simple.html">
-              <div class="cbp-caption-defaultWrap">
-                <img src="../../assets/img/380x360/img1.jpg" alt="Image Description">
-              </div>
-              <div class="cbp-caption-activeWrap bg-primary">
-                <div class="cbp-l-caption-alignCenter">
-                  <div class="cbp-l-caption-body">
-                    <h4 class="h6 text-white mb-0">Remind Me More</h4>
-                    <p class="small text-white-70 mb-0">
-                      by Tiberiu Neamu
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-          <!-- End Item -->
+      <div class="js-slick-carousel u-slick u-slick--gutters-3 u-slick--equal-height"
+           data-slides-show="4"
+           data-slides-scroll="3"
+           data-infinite="true"
+           data-pagi-classes="text-center u-slick__pagination mt-7 mb-0"
+           data-responsive='[{
+             "breakpoint": 992,
+             "settings": {
+               "slidesToShow": 3
+             }
+           }, {
+             "breakpoint": 720,
+             "settings": {
+               "slidesToShow": 2
+             }
+           }, {
+             "breakpoint": 480,
+             "settings": {
+               "slidesToShow": 1
+             }
+           }]'>
+        <div class="js-slide">
+          <!-- Product -->
+          <div class="card text-center w-100">
+            <div class="position-relative">
+              <img class="card-img-top" src="{% static 'img/300x180/img3.jpg' %}" alt="Image Description">
 
-          <!-- Item -->
-          <div class="cbp-item rounded branding">
-            <a class="cbp-caption" href="single-page-simple.html">
-              <div class="cbp-caption-defaultWrap">
-                <img src="../../assets/img/380x360/img2.jpg" alt="Image Description">
+              <div class="position-absolute top-0 left-0 pt-3 pl-3">
+                <span class="badge badge-success badge-pill">New arrival</span>
               </div>
-              <div class="cbp-caption-activeWrap bg-primary">
-                <div class="cbp-l-caption-alignCenter">
-                  <div class="cbp-l-caption-body">
-                    <h4 class="h6 text-white mb-0">Workout Buddy</h4>
-                    <p class="small text-white-70 mb-0">
-                      by Tiberiu Neamu
-                    </p>
-                  </div>
-                </div>
+              <div class="position-absolute top-0 right-0 pt-3 pr-3">
+                <button type="button" class="btn btn-sm btn-icon btn-outline-secondary rounded-circle" data-toggle="tooltip" data-placement="top" title="Save for later">
+                  <span class="fas fa-heart btn-icon__inner"></span>
+                </button>
               </div>
-            </a>
-          </div>
-          <!-- End Item -->
+            </div>
 
-          <!-- Item -->
-          <div class="cbp-item rounded abstract illustration">
-            <a class="cbp-caption" href="single-page-simple.html">
-              <div class="cbp-caption-defaultWrap">
-                <img src="../../assets/img/380x360/img3.jpg" alt="Image Description">
-              </div>
-              <div class="cbp-caption-activeWrap bg-primary">
-                <div class="cbp-l-caption-alignCenter">
-                  <div class="cbp-l-caption-body">
-                    <h4 class="h6 text-white mb-0">Tiger</h4>
-                    <p class="small text-white-70 mb-0">
-                      by Cosmin Capitanu
-                    </p>
-                  </div>
+            <div class="card-body pt-4 px-4 pb-0">
+              <div class="mb-2">
+                <a class="d-inline-block text-secondary small font-weight-medium mb-1" href="#">Accessories</a>
+                <h3 class="font-size-1 font-weight-normal">
+                  <a class="text-secondary" href="single-product.html">Herschel backpack in dark blue</a>
+                </h3>
+                <div class="d-block font-size-1">
+                  <span class="font-weight-medium">$56.99</span>
                 </div>
               </div>
-            </a>
-          </div>
-          <!-- End Item -->
+            </div>
 
-          <!-- Item -->
-          <div class="cbp-item rounded abstract illustration">
-            <a class="cbp-caption" href="single-page-simple.html">
-              <div class="cbp-caption-defaultWrap">
-                <img src="../../assets/img/380x360/img5.jpg" alt="Image Description">
-              </div>
-              <div class="cbp-caption-activeWrap bg-primary">
-                <div class="cbp-l-caption-alignCenter">
-                  <div class="cbp-l-caption-body">
-                    <h4 class="h6 text-white mb-0">Tiger</h4>
-                    <p class="small text-white-70 mb-0">
-                      by Cosmin Capitanu
-                    </p>
+            <div class="card-footer border-0 pt-0 pb-4 px-4">
+              <div class="mb-3">
+                <a class="d-inline-flex align-items-center small" href="#">
+                  <div class="text-warning mr-2">
+                    <large class="far fa-star text-muted"></large>
+                    <large class="far fa-star text-muted"></large>
+                    <large class="far fa-star text-muted"></large>
+                    <large class="far fa-star text-muted"></large>
+                    <large class="far fa-star text-muted"></large>
                   </div>
-                </div>
+                  <span class="text-secondary">0</span>
+                </a>
               </div>
-            </a>
+              <button type="button" class="btn btn-sm btn-outline-primary btn-sm-wide btn-pill transition-3d-hover">Add to Cart</button>
+            </div>
           </div>
-          <!-- End Item -->
-
-          <!-- Item -->
-          <div class="cbp-item rounded graphic illustration">
-            <a class="cbp-caption" href="single-page-simple.html">
-              <div class="cbp-caption-defaultWrap">
-                <img src="../../assets/img/380x360/img4.jpg" alt="Image Description">
-              </div>
-              <div class="cbp-caption-activeWrap bg-primary">
-                <div class="cbp-l-caption-alignCenter">
-                  <div class="cbp-l-caption-body">
-                    <h4 class="h6 text-white mb-0">Tiger</h4>
-                    <p class="small text-white-70 mb-0">
-                      by Cosmin Capitanu
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-          <!-- End Item -->
-
-          <!-- Item -->
-          <div class="cbp-item rounded graphic illustration">
-            <a class="cbp-caption" href="single-page-simple.html">
-              <div class="cbp-caption-defaultWrap">
-                <img src="../../assets/img/380x360/img6.jpg" alt="Image Description">
-              </div>
-              <div class="cbp-caption-activeWrap bg-primary">
-                <div class="cbp-l-caption-alignCenter">
-                  <div class="cbp-l-caption-body">
-                    <h4 class="h6 text-white mb-0">Tiger</h4>
-                    <p class="small text-white-70 mb-0">
-                      by Cosmin Capitanu
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-          <!-- End Item -->
-
-          <!-- Item -->
-          <div class="cbp-item rounded branding">
-            <a class="cbp-caption" href="single-page-simple.html">
-              <div class="cbp-caption-defaultWrap">
-                <img src="../../assets/img/380x360/img18.jpg" alt="Image Description">
-              </div>
-              <div class="cbp-caption-activeWrap bg-primary">
-                <div class="cbp-l-caption-alignCenter">
-                  <div class="cbp-l-caption-body">
-                    <h4 class="h6 text-white mb-0">Workout Buddy</h4>
-                    <p class="small text-white-70 mb-0">
-                      by Tiberiu Neamu
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-          <!-- End Item -->
-
-          <!-- Item -->
-          <div class="cbp-item rounded abstract illustration">
-            <a class="cbp-caption" href="single-page-simple.html">
-              <div class="cbp-caption-defaultWrap">
-                <img src="../../assets/img/380x360/img12.jpg" alt="Image Description">
-              </div>
-              <div class="cbp-caption-activeWrap bg-primary">
-                <div class="cbp-l-caption-alignCenter">
-                  <div class="cbp-l-caption-body">
-                    <h4 class="h6 text-white mb-0">Tiger</h4>
-                    <p class="small text-white-70 mb-0">
-                      by Cosmin Capitanu
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-          <!-- End Item -->
+          <!-- End Product -->
         </div>
-        <!-- End Content -->
+
+        <div class="js-slide">
+          <!-- Product -->
+          <div class="card text-center w-100">
+            <div class="position-relative">
+              <img class="card-img-top" src="{% static 'img/300x180/img12.jpg' %}" alt="Image Description">
+
+              <div class="position-absolute top-0 right-0 pt-3 pr-3">
+                <button type="button" class="btn btn-sm btn-icon btn-outline-secondary rounded-circle" data-toggle="tooltip" data-placement="top" title="Save for later">
+                  <span class="fas fa-heart btn-icon__inner"></span>
+                </button>
+              </div>
+            </div>
+
+            <div class="card-body pt-4 px-4 pb-0">
+              <div class="mb-2">
+                <a class="d-inline-block text-secondary small font-weight-medium mb-1" href="#">Clothing</a>
+                <h4 class="font-size-1 font-weight-normal">
+                  <a class="text-secondary" href="single-product.html">Front hoodie</a>
+                </h4>
+                <div class="d-block">
+                  <span class="font-weight-medium">$91.88</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-footer border-0 pt-0 pb-4 px-4">
+              <div class="mb-3">
+                <a class="d-inline-flex align-items-center small" href="#">
+                  <div class="text-warning mr-2">
+                    <large class="fas fa-star"></large>
+                    <large class="fas fa-star"></large>
+                    <large class="fas fa-star"></large>
+                    <large class="fas fa-star"></large>
+                    <large class="far fa-star text-muted"></large>
+                  </div>
+                  <span class="text-secondary">40</span>
+                </a>
+              </div>
+              <button type="button" class="btn btn-sm btn-outline-primary btn-sm-wide btn-pill transition-3d-hover">Add to Cart</button>
+            </div>
+          </div>
+          <!-- End Product -->
+        </div>
+
+        <div class="js-slide">
+          <!-- Product -->
+          <div class="card text-center w-100">
+            <div class="position-relative">
+              <img class="card-img-top" src="{% static 'img/300x180/img4.jpg' %}" alt="Image Description">
+
+              <div class="position-absolute top-0 left-0 pt-3 pl-3">
+                <span class="badge badge-danger badge-pill">Sold out</span>
+              </div>
+              <div class="position-absolute top-0 right-0 pt-3 pr-3">
+                <button type="button" class="btn btn-sm btn-icon btn-outline-secondary rounded-circle" data-toggle="tooltip" data-placement="top" title="Save for later">
+                  <span class="fas fa-heart btn-icon__inner"></span>
+                </button>
+              </div>
+            </div>
+
+            <div class="card-body pt-4 px-4 pb-0">
+              <div class="mb-2">
+                <a class="d-inline-block text-secondary small font-weight-medium mb-1" href="#">Accessories</a>
+                <h4 class="font-size-1 font-weight-normal">
+                  <a class="text-secondary" href="single-product.html">Herschel backpack in gray</a>
+                </h4>
+                <div class="d-block font-size-1">
+                  <span class="font-weight-medium">$29.99</span>
+                  <span class="text-secondary ml-1"><del>$33.99</del></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-footer border-0 pt-0 pb-4 px-4">
+              <div class="mb-3">
+                <a class="d-inline-flex align-items-center small" href="#">
+                  <div class="text-warning mr-2">
+                    <large class="fas fa-star"></large>
+                    <large class="fas fa-star"></large>
+                    <large class="fas fa-star"></large>
+                    <large class="far fa-star text-muted"></large>
+                    <large class="far fa-star text-muted"></large>
+                  </div>
+                  <span class="text-secondary">125</span>
+                </a>
+              </div>
+              <button type="button" class="btn btn-sm btn-outline-primary btn-sm-wide btn-pill transition-3d-hover">Add to Cart</button>
+            </div>
+          </div>
+          <!-- End Product -->
+        </div>
+
+        <div class="js-slide">
+          <!-- Product -->
+          <div class="card text-center w-100">
+            <div class="position-relative">
+                <img class="card-img-top" src="{% static 'img/300x180/img6.jpg' %}" alt="Image Description">
+
+              <div class="position-absolute top-0 right-0 pt-3 pr-3">
+                <button type="button" class="btn btn-sm btn-icon btn-outline-secondary rounded-circle" data-toggle="tooltip" data-placement="top" title="Save for later">
+                  <span class="fas fa-heart btn-icon__inner"></span>
+                </button>
+              </div>
+            </div>
+
+            <div class="card-body pt-4 px-4 pb-0">
+              <div class="mb-2">
+                <a class="d-inline-block text-secondary small font-weight-medium mb-1" href="#">Clothing</a>
+                <h4 class="font-size-1 font-weight-normal">
+                  <a class="text-secondary" href="single-product.html">Front Originals adicolor t-shirt with trefoil logo</a>
+                </h4>
+                <div class="d-block">
+                  <span class="font-weight-medium">$38.00</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-footer border-0 pt-0 pb-4 px-4">
+              <div class="mb-3">
+                <a class="d-inline-flex align-items-center small" href="#">
+                  <div class="text-warning mr-2">
+                    <large class="fas fa-star"></large>
+                    <large class="fas fa-star"></large>
+                    <large class="fas fa-star"></large>
+                    <large class="fas fa-star"></large>
+                    <large class="fas fa-star"></large>
+                  </div>
+                  <span class="text-secondary">9</span>
+                </a>
+              </div>
+              <button type="button" class="btn btn-sm btn-outline-primary btn-sm-wide btn-pill transition-3d-hover">Add to Cart</button>
+            </div>
+          </div>
+          <!-- End Product -->
+        </div>
+
+        <div class="js-slide">
+          <!-- Product -->
+          <div class="card text-center w-100">
+            <div class="position-relative">
+              <img class="card-img-top" src="{% static 'img/300x180/img7.jpg' %}"alt="Image Description">
+
+              <div class="position-absolute top-0 right-0 pt-3 pr-3">
+                <button type="button" class="btn btn-sm btn-icon btn-outline-secondary rounded-circle" data-toggle="tooltip" data-placement="top" title="Save for later">
+                  <span class="fas fa-heart btn-icon__inner"></span>
+                </button>
+              </div>
+            </div>
+
+            <div class="card-body pt-4 px-4 pb-0">
+              <div class="mb-2">
+                <a class="d-inline-block text-secondary small font-weight-medium mb-1" href="#">Accessories</a>
+                <h4 class="font-size-1 font-weight-normal">
+                  <a class="text-secondary" href="single-product.html">Front mesh baseball cap with signature logo</a>
+                </h4>
+                <div class="d-block">
+                  <span class="font-weight-medium">$8.88</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-footer border-0 pt-0 pb-4 px-4">
+              <div class="mb-3">
+                <a class="d-inline-flex align-items-center small" href="#">
+                  <div class="text-warning mr-2">
+                    <large class="fas fa-star"></large>
+                    <large class="fas fa-star"></large>
+                    <large class="fas fa-star"></large>
+                    <large class="fas fa-star"></large>
+                    <large class="far fa-star text-muted"></large>
+                  </div>
+                  <span class="text-secondary">31</span>
+                </a>
+              </div>
+              <button type="button" class="btn btn-sm btn-outline-primary btn-sm-wide btn-pill transition-3d-hover">Add to Cart</button>
+            </div>
+          </div>
+          <!-- End Product -->
+        </div>
+
+        <div class="js-slide">
+          <!-- Product -->
+          <div class="card text-center w-100">
+            <div class="position-relative">
+              <img class="card-img-top" src="{% static 'img/300x180/img11.jpg' %}" alt="Image Description">
+
+              <div class="position-absolute top-0 left-0 pt-3 pl-3">
+                <span class="badge badge-success badge-pill">New arrival</span>
+              </div>
+              <div class="position-absolute top-0 right-0 pt-3 pr-3">
+                <button type="button" class="btn btn-sm btn-icon btn-outline-secondary rounded-circle" data-toggle="tooltip" data-placement="top" title="Save for later">
+                  <span class="fas fa-heart btn-icon__inner"></span>
+                </button>
+              </div>
+            </div>
+
+            <div class="card-body pt-4 px-4 pb-0">
+              <div class="mb-2">
+                <a class="d-inline-block text-secondary small font-weight-medium mb-1" href="#">Clothing</a>
+                <h4 class="font-size-1 font-weight-normal">
+                  <a class="text-secondary" href="single-product.html">Front Originals adicolor t-shirt in gray</a>
+                </h4>
+                <div class="d-block">
+                  <span class="font-weight-medium">$24.00</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-footer border-0 pt-0 pb-4 px-4">
+              <div class="mb-3">
+                <a class="d-inline-flex align-items-center small" href="#">
+                  <div class="text-warning mr-2">
+                    <large class="far fa-star text-muted"></large>
+                    <large class="far fa-star text-muted"></large>
+                    <large class="far fa-star text-muted"></large>
+                    <large class="far fa-star text-muted"></large>
+                    <large class="far fa-star text-muted"></large>
+                  </div>
+                  <span class="text-secondary">0</span>
+                </a>
+              </div>
+              <button type="button" class="btn btn-sm btn-outline-primary btn-sm-wide btn-pill transition-3d-hover">Add to Cart</button>
+            </div>
+          </div>
+          <!-- End Product -->
+        </div>
+
+        <div class="js-slide">
+          <!-- Product -->
+          <div class="card text-center w-100">
+            <div class="position-relative">
+              <img class="card-img-top" src="{% static 'img/300x180/img9.jpg' %}" alt="Image Description">
+
+              <div class="position-absolute top-0 right-0 pt-3 pr-3">
+                <button type="button" class="btn btn-sm btn-icon btn-outline-secondary rounded-circle" data-toggle="tooltip" data-placement="top" title="Save for later">
+                  <span class="fas fa-heart btn-icon__inner"></span>
+                </button>
+              </div>
+            </div>
+
+            <div class="card-body pt-4 px-4 pb-0">
+              <div class="mb-2">
+                <a class="d-inline-block text-secondary small font-weight-medium mb-1" href="#">Clothing</a>
+                <h4 class="font-size-1 font-weight-normal">
+                  <a class="text-secondary" href="single-product.html">COLLUSION Unisex mechanic print t-shirt</a>
+                </h4>
+                <div class="d-block">
+                  <span class="font-weight-medium">$43.99</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-footer border-0 pt-0 pb-4 px-4">
+              <div class="mb-3">
+                <a class="d-inline-flex align-items-center small" href="#">
+                  <div class="text-warning mr-2">
+                    <large class="far fa-star text-muted"></large>
+                    <large class="far fa-star text-muted"></large>
+                    <large class="far fa-star text-muted"></large>
+                    <large class="far fa-star text-muted"></large>
+                    <large class="far fa-star text-muted"></large>
+                  </div>
+                  <span class="text-secondary">0</span>
+                </a>
+              </div>
+              <button type="button" class="btn btn-sm btn-outline-primary btn-sm-wide btn-pill transition-3d-hover">Add to Cart</button>
+            </div>
+          </div>
+          <!-- End Product -->
+        </div>
+
+        <div class="js-slide">
+          <!-- Product -->
+          <div class="card text-center w-100">
+            <div class="position-relative">
+              <img class="card-img-top" src="{% static 'img/300x180/img8.jpg' %}" alt="Image Description">
+
+              <div class="position-absolute top-0 right-0 pt-3 pr-3">
+                <button type="button" class="btn btn-sm btn-icon btn-outline-secondary rounded-circle" data-toggle="tooltip" data-placement="top" title="Save for later">
+                  <span class="fas fa-heart btn-icon__inner"></span>
+                </button>
+              </div>
+            </div>
+
+            <div class="card-body pt-4 px-4 pb-0">
+              <div class="mb-2">
+                <a class="d-inline-block text-secondary small font-weight-medium mb-1" href="#">Accessories</a>
+                <h4 class="font-size-1 font-weight-normal">
+                  <a class="text-secondary" href="single-product.html">Billabong Walled snapback in green</a>
+                </h4>
+                <div class="d-block">
+                  <span class="font-weight-medium">$12.00</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-footer border-0 pt-0 pb-4 px-4">
+              <div class="mb-3">
+                <a class="d-inline-flex align-items-center small" href="#">
+                  <div class="text-warning mr-2">
+                    <large class="fas fa-star"></large>
+                    <large class="fas fa-star"></large>
+                    <large class="fas fa-star"></large>
+                    <large class="fas fa-star"></large>
+                    <large class="fas fa-star"></large>
+                  </div>
+                  <span class="text-secondary">2</span>
+                </a>
+              </div>
+              <button type="button" class="btn btn-sm btn-outline-primary btn-sm-wide btn-pill transition-3d-hover">Add to Cart</button>
+            </div>
+          </div>
+          <!-- End Product -->
+        </div>
       </div>
-      <!-- End Cubeportfolio -->
     </div>
-    <!-- End Portfolio Section -->
-  </main>
-  <!-- ========== END MAIN ========== -->
+    <!-- End Related Products Section -->
 
+    <!-- Review Section -->
+    <a class="btn btn-default" href="">Add comment</a>
 
-    <div class='row'>
-            <div class='col-12 col-md-6'>
+    <div id="reviewSection" class="container space-bottom-2 space-bottom-lg-3">
+      <div class="row">
+        <div class="col-lg-4 mb-7 mb-lg-0">
+          <div class="border-bottom pb-4 mb-4">
+            <!-- Overall Rating Stats -->
+            <div class="card border-0 bg-primary text-white p-4 mb-3">
+              <div class="d-flex justify-content-center align-items-center">
+                <span class="display-4 font-weight-semi-bold">4.7</span>
+                <div class="ml-3">
+                  <div class="small">
+                    <large class="fas fa-star"></large>
+                    <large class="fas fa-star"></large>
+                    <large class="fas fa-star"></large>
+                    <large class="fas fa-star"></large>
+                    <large class="far fa-star"></large>
+                  </div>
+                  <span class="font-weight-normal"><strong>287</strong> reviews</span>
+                </div>
+              </div>
+            </div>
+            <!-- End Overall Rating Stats -->
 
+            <h3 class="h4">Rating breakdown</h3>
+
+            <!-- Ratings -->
+            <ul class="list-unstyled">
+              <li class="py-1">
+                <a class="row align-items-center mx-gutters-2 font-size-1" href="javascript:;">
+                  <div class="col-3">
+                    <span class="text-dark">5 stars</span>
+                  </div>
+                  <div class="col-7">
+                    <div class="progress" style="height: 4px;">
+                      <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+                  <div class="col-2 text-right">
+                    <span class="text-secondary">205</span>
+                  </div>
+                </a>
+              </li>
+              <li class="py-1">
+                <a class="row align-items-center mx-gutters-2 font-size-1" href="javascript:;">
+                  <div class="col-3">
+                    <span class="text-dark">4 stars</span>
+                  </div>
+                  <div class="col-7">
+                    <div class="progress" style="height: 4px;">
+                      <div class="progress-bar" role="progressbar" style="width: 53%;" aria-valuenow="53" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+                  <div class="col-2 text-right">
+                    <span class="text-secondary">55</span>
+                  </div>
+                </a>
+              </li>
+              <li class="py-1">
+                <a class="row align-items-center mx-gutters-2 font-size-1" href="javascript:;">
+                  <div class="col-3">
+                    <span class="text-dark">3 stars</span>
+                  </div>
+                  <div class="col-7">
+                    <div class="progress" style="height: 4px;">
+                      <div class="progress-bar" role="progressbar" style="width: 20%;" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+                  <div class="col-2 text-right">
+                    <span class="text-secondary">23</span>
+                  </div>
+                </a>
+              </li>
+              <li class="py-1">
+                <a class="row align-items-center mx-gutters-2 font-size-1" href="javascript:;">
+                  <div class="col-3">
+                    <span class="text-dark">2 stars</span>
+                  </div>
+                  <div class="col-7">
+                    <div class="progress" style="height: 4px;">
+                      <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+                  <div class="col-2 text-right">
+                    <span class="text-secondary">0</span>
+                  </div>
+                </a>
+              </li>
+              <li class="py-1">
+                <a class="row align-items-center mx-gutters-2 font-size-1" href="javascript:;">
+                  <div class="col-3">
+                    <span class="text-dark">1 stars</span>
+                  </div>
+                  <div class="col-7">
+                    <div class="progress" style="height: 4px;">
+                      <div class="progress-bar" role="progressbar" style="width: 1%;" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+                  <div class="col-2 text-right">
+                    <span class="text-secondary">4</span>
+                  </div>
+                </a>
+              </li>
+            </ul>
+            <!-- End Ratings -->
+          </div>
+
+          <span class="d-block display-4 font-weight-medium">77%</span>
+          <p class="small">of customers recommend this product</p>
         </div>
-</div>
+
+        <div class="col-lg-8">
+          <div class="pl-lg-4">
+            <!-- Title -->
+            <div class="border-bottom pb-4 mb-4">
+              <div class="d-flex justify-content-between align-items-center">
+                <h3 class="h5 text-secondary font-weight-normal mb-0">Sort on</h3>
+
+                <!-- Select -->
+                <select class="js-select selectpicker dropdown-select"
+                        data-size="10"
+                        data-width="fit"
+                        data-style="btn-soft-secondary btn-xs">
+                  <option value="mostRecent" selected>Most recent</option>
+                  <option value="relevant">Relevant</option>
+                  <option value="helpful">Helpful</option>
+                  <option value="newest">Newest</option>
+                </select>
+                <!-- End Select -->
+              </div>
+            </div>
+            <!-- End Title -->
+            <div class="position-relative">
+              <button id="dropdownSingleButtonInvoker" class="btn btn-sm btn-secondary dropdown-toggle" type="button"
+                 aria-controls="dropdownSingleButton"
+                 aria-haspopup="true"
+                 aria-expanded="false"
+                 data-unfold-target="#dropdownSingleButton"
+                 data-unfold-type="css-animation"
+                 data-unfold-duration="300"
+                 data-unfold-delay="300"
+                 data-unfold-hide-on-scroll="true"
+                 data-unfold-animation-in="slideInUp"
+                 data-unfold-animation-out="fadeOut">
+                Dropdown button
+              </button>
+            
+              <div id="dropdownSingleButton" class="dropdown-menu dropdown-unfold" aria-labelledby="dropdownSingleButtonInvoker">
+                <a class="dropdown-item active" href="#">One</a>
+                <a class="dropdown-item" href="#">Two</a>
+                <a class="dropdown-item" href="#">Three</a>
+              </div>
+            </div>
+
+            <!-- Review -->
+            {% for comment in product.comments.all %}
+            <div class="border-bottom pb-4 mb-4">
+              <!-- Review Rating -->
+              <div class="d-flex justify-content-between align-items-center text-secondary font-size-1 mb-3">
+                <div class="text-warning">
+                  {% if comment.rating == 1 %}
+                  <large class="fas fa-star"></large>
+                  <large class="far fa-star text-muted"></large>
+                  <large class="far fa-star text-muted"></large>
+                  <large class="far fa-star text-muted"></large>
+                  <large class="far fa-star text-muted"></large>
 
 
-{% endblock %}
+                  {% elif rating == 2 %}
+                  <large class="fas fa-star"></large>
+                  <large class="fas fa-star"></large>
+                  <large class="far fa-star text-muted"></large>
+                  <large class="far fa-star text-muted"></large>
+                  <large class="far fa-star text-muted"></large>
+
+                  {% elif comment.rating == 3 %}
+                  <large class="fas fa-star"></large>
+                  <large class="fas fa-star"></large>
+                  <large class="fas fa-star"></large>
+                  <large class="far fa-star text-muted"></large>
+                  <large class="far fa-star text-muted"></large>
+
+                  {% elif comment.rating == 4 %}
+                  <large class="fas fa-star"></large>
+                  <large class="fas fa-star"></large>
+                  <large class="fas fa-star"></large>
+                  <large class="fas fa-star"></large>
+                  <large class="far fa-star text-muted"></large>
+
+                  {% elif comment.rating == 5 %}
+                  <large class="fas fa-star"></large>
+                  <large class="fas fa-star"></large>
+                  <large class="fas fa-star"></large>
+                  <large class="fas fa-star"></large>
+                  <large class="fas fa-star"></large>
+
+                  {% endif %}
+                  
+                </div>
+                <span>{{ comment.timestamp }}</span>
+              </div>
+              <!-- End Review Rating -->
+
+              <h4 class="h6 font-weight-semi-bold text-uppercase">I jus love it!</h4>
+              
+              <div><p>{{ comment.content }}</p></div>
+                    
+
+              <!-- Reviewer -->
+              <div class="text-secondary font-size-1 mb-2">
+                <strong class="text-dark">{{ comment.user.get_full_name }}</strong>
+                <span>- Verified Purchase</span>
+              </div>
+              <!-- End Reviewer -->
+
+              <!-- Helpful -->
+              <div class="font-size-1">
+                <span>Was this helpful?</span>
+                <span class="ml-2">
+                  <a class="link-muted" href="javascript:;">Yes</a>
+                  <span class="text-secondary">(45)</span>
+                </span>
+                <span class="ml-2">
+                  <a class="link-muted" href="javascript:;">No</a>
+                  <span class="text-secondary">(21)</span>
+                </span>
+              </div>
+              <!-- End Helpful -->
+            </div>
+            <!-- End Review -->
+            {% endfor %}
+            
+            <div class="d-sm-flex justify-content-sm-end">
+              <a class="btn btn-soft-primary btn-pill transition-3d-hover px-5 mb-2 mr-3" href="#">Read More</a>
+              <button type="button" class="btn btn-primary btn-pill transition-3d-hover px-5 mb-2">Write a Review</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Review Section -->
+
+    <!-- Subscribe Section -->
+    <div class="bg-light">
+      <div class="container space-2">
+        <div class="row justify-content-center">
+          <div class="col-md-9 col-lg-6">
+            <!-- Title -->
+            <div class="text-center mb-4">
+              <h2 class="h1 font-weight-medium">Stay in the know</h2>
+              <p>Get special offers on the latest developments from Front.</p>
+            </div>
+            <!-- End Title -->
+
+            <!-- Subscribe Form -->
+            <form class="js-validate js-form-message w-lg-85 mx-lg-auto">
+              <label class="sr-only" for="subscribeSrEmail">Email address</label>
+              <div class="input-group input-group-pill">
+                <input type="email" class="form-control" name="email" id="subscribeSrEmail" placeholder="Email address" aria-label="Email address" aria-describedby="subscribeButton" required
+                       data-msg="Please enter a valid email address.">
+                <div class="input-group-append">
+                  <button type="submit" class="btn btn-primary btn-sm-wide" id="subscribeButton">Join</button>
+                </div>
+              </div>
+            </form>
+            <!-- End Subscribe Form -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Subscribe Section -->
+    </main>
+  <!-- ========== END MAIN CONTENT ========== -->
+  
+  {% endblock %}
+
+  <!-- Go to Top -->
+  <a class="js-go-to u-go-to" href="#"
+    data-position='{"bottom": 15, "right": 15 }'
+    data-type="fixed"
+    data-offset-top="400"
+    data-compensation="#header"
+    data-show-effect="slideInUp"
+    data-hide-effect="slideOutDown">
+    <span class="fas fa-arrow-up u-go-to__inner"></span>
+  </a>
+  <!-- End Go to Top -->
+
+  {% block javascript %}
+  <!-- JS Vriksh -->
+
+  <script src="{% static 'js/components/hs.quantity-counter.js"></script>
+  <script src="{% static 'js/components/hs.selectpicker.js' %}"></script>
+
+  <!-- JS Plugins Init. -->
+  <script>
+    
+    $(document).on('ready', function () {
+      
+      // initialization of quantity counter
+      $.HSCore.components.HSQantityCounter.init('.js-quantity');
+
+      // initialization of select picker
+      $.HSCore.components.HSSelectPicker.init('.js-select');
+    });
+  </script>
+    {% endblock %}
